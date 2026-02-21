@@ -14,6 +14,7 @@ public class MazeGamePresenter {
     private MazeGameView view;
     private MazeGame model;
     private Map map;
+    private final int TILESIZE = 30;
 
     public MazeGamePresenter(MazeGameView view, MazeGame model) {
 
@@ -40,43 +41,39 @@ public class MazeGamePresenter {
 
     private void drawMap(){
 
+            //maak een graphicsContext om in te kunnen tekenen
             GraphicsContext gc = view.getGC();
+            //maak een array van de maparray
             int[][] mapArray = map.getMap();
-
+            //rijen en colommen
             int rows = mapArray.length;
             int cols = mapArray[0].length;
 
-            int tileSize = 40;
+            // geef de map een bepaalde grootte
+            double mapWidth = cols * TILESIZE;
+            double mapHeight = rows * TILESIZE;
+            // maak een canvas aan
+            double canvasWidth = view.getGameCanvas().getWidth();
+            double canvasHeight = view.getGameCanvas().getHeight();
 
-            // Correct map dimensions
-            double mapWidth = cols * tileSize;
-            double mapHeight = rows * tileSize;
-
-            // Use CANVAS size, not BorderPane size
-        double canvasWidth = view.getGameCanvas().getWidth();
-        double canvasHeight = view.getGameCanvas().getHeight();
-
-            // Centering offsets
+            // spacing toevoegen om de map te centreren. kan later misschien weg
             double spacingX = (canvasWidth - mapWidth) / 2;
             double spacingY = (canvasHeight - mapHeight) / 2;
-
+            //maak de graphicscontent aan in de canvas
             gc.clearRect(0, 0, canvasWidth, canvasHeight);
+            //fillcolor zwart
             gc.setFill(Color.BLACK);
-
+            //ga de map af en teken per 1 in de array een zwart kadertje.
             for (int y = 0; y < rows; y++) {
                 for (int x = 0; x < cols; x++) {
 
-                    if (mapArray[y][x] == 1) {  // FIXED: compare to int
+                    if (mapArray[y][x] == 1) {
                         gc.fillRect(
-                                spacingX + x * tileSize,
-                                spacingY + y * tileSize,
-                                tileSize,
-                                tileSize
+                                spacingX + x * TILESIZE,
+                                spacingY + y * TILESIZE, TILESIZE, TILESIZE
                         );
                     }
                 }
             }
         }
-
-
     }
