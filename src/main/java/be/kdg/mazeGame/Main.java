@@ -17,12 +17,10 @@ public class Main extends Application {
 
         MazeGamePresenter presenter = new MazeGamePresenter(view, model);
 
-        Scene scene = new Scene(view);
+        Scene scene = new Scene(view,800,600);
 
         stage.setScene(scene);
-        stage.setTitle("Application");
-        stage.setWidth(800);
-        stage.setHeight(600);
+        stage.setTitle("Mazegame");
         stage.show();
     }
 }
