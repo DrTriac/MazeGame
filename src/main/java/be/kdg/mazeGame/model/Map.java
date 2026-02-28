@@ -3,7 +3,7 @@ package be.kdg.mazeGame.model;
 /**
  * Author: Astrid
  * Date: 20/02/2026
- * Description: class for to store and access the map of the maze.
+ * Description: class to store and access the map of the maze.
  */
 
 public class Map {
