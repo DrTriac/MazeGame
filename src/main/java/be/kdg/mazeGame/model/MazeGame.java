@@ -27,13 +27,27 @@ public class MazeGame {
             {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}
     };
 
-    public MazeGame() {
+    public MazeGame(Player player) {
         this.currentMap = MapBuilder.fromCharLayout(LEVEL_ONE);
+        this.player = player;
+        int[] start = currentMap.getStartPosition();
+        player.setPosition(start[0], start[1]);
     }
 
     public Map getCurrentMap() {
         return currentMap;
     }
 
+    public void movePlayer(int row, int column) {
+        int newRow = player.getRow() + row;
+        int newColumn = player.getColumn() + column;
 
+        if (currentMap.isTileWalkable(newRow, newColumn)) {
+            player.setPosition(newRow, newColumn);
+        }
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
 }

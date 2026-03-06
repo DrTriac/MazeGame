@@ -68,11 +68,22 @@ public class MazeGameView extends BorderPane {
         return mazeCanvas;
     }
 
-    void drawMap(Map map) {
+    void drawMap(Map map, Player player) {
         GraphicsContext gc = mazeCanvas.getGraphicsContext2D();
         gc.clearRect(0, 0, mazeCanvas.getWidth(), mazeCanvas.getHeight());
 
-        double cellSize = 30;
+        // max cell size = height or width from canvas / number of columns or rows
+        // from max height or width you take the smallest number to calculate your cellSize
+        // so the maze fits entirely in the canvas
+        double cellSize = Math.min(mazeCanvas.getWidth() / map.getWidth(), mazeCanvas.getHeight() / map.getHeight());
+
+        // calculate the actual pixel size of the map
+        double mazeWidth = map.getWidth() * cellSize;
+        double mazeHeight = map.getHeight() * cellSize;
+
+        // centering the maze in the canvas
+        double offsetX = (mazeCanvas.getWidth() - mazeWidth) / 2;
+        double offsetY = (mazeCanvas.getHeight() - mazeHeight) / 2; // divided by 2 because you want the same amount of space at the top and bottom of the maze
 
         for (int row = 0; row < map.getHeight(); row++) {
             for (int column = 0; column < map.getWidth(); column++) {
@@ -86,10 +97,21 @@ public class MazeGameView extends BorderPane {
                     default -> gc.setFill(Color.PURPLE);
                 }
 
-                gc.fillRect(column * cellSize, row * cellSize, cellSize, cellSize);
+                double x = offsetX + column * cellSize;
+                double y = offsetY + row * cellSize;
+
+                gc.fillRect(x, y, cellSize, cellSize);
                 gc.setStroke(Color.GRAY);
-                gc.strokeRect(column * cellSize, row * cellSize, cellSize, cellSize);
+                gc.strokeRect(x, y, cellSize, cellSize);
             }
         }
+
+        double playerX = offsetX + player.getColumn() * cellSize + cellSize / 2;
+        double playerY =  offsetY + player.getRow() * cellSize + cellSize / 2;
+
+        gc.setFill(Color.YELLOW);
+        double radius = cellSize * 0.3;
+        gc.fillOval(playerX - radius, playerY - radius, radius * 2, radius * 2);
     }
+
 }

@@ -7,19 +7,41 @@ package be.kdg.mazeGame.model;
  */
 
 public class Player {
-    private String name;
+    /** private String name;
     private int score;
     private Color color;
-    private double speed;
+    private double speed;*/
+    private int row;
+    private int column;
 
-    public Player(String name, Color color) {
-        this.name = name;
-        this.color = color;
-        this.score = 0;
-        this.speed = 1;
+    public Player() {
+        this.row = 0;
+        this.column = 0;
     }
 
-    public String getName() {
+    public Player(int row, int column) {
+        /** this.name = name;
+        this.color = color;
+        this.score = 0;
+        this.speed = 1; */
+        this.row = row;
+        this.column = column;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public void setPosition(int row, int column) {
+        this.row = row;
+        this.column = column;
+    }
+
+    /** public String getName() {
         return name;
     }
 
@@ -41,6 +63,5 @@ public class Player {
 
     public double getSpeed() {
         return speed;
-    }
-
+    } */
 }

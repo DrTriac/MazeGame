@@ -11,6 +11,8 @@ import be.kdg.mazeGame.model.MazeGame;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
+import javafx.scene.input.KeyEvent;
+import be.kdg.mazeGame.view.MazeGameView;
 
 public class MazeGamePresenter {
     private MazeGameView view;
@@ -19,11 +21,29 @@ public class MazeGamePresenter {
     public MazeGamePresenter(MazeGameView view, MazeGame model) {
         this.view = view;
         this.model = model;
+
+        view.setFocusTraversable(true); // ensures that the view can receive keyboard iput
+
         addEventHandlers();
         updateView();
     }
 
+
+
+
     private void addEventHandlers() {
+        view.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                switch (event.getCode()) {
+                    case UP -> model.movePlayer(-1, 0);
+                    case DOWN -> model.movePlayer(1, 0);
+                    case RIGHT -> model.movePlayer(0, 1);
+                    case LEFT -> model.movePlayer(0, -1);
+                }
+                updateView();
+            }
+        });
         /**view.getButtonOk().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -37,7 +57,7 @@ public class MazeGamePresenter {
     }
 
     private void updateView() {
-        view.drawMap(model.getCurrentMap());
+        view.drawMap(model.getCurrentMap(), model.getPlayer());
     }
 
 

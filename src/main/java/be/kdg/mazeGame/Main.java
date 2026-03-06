@@ -7,6 +7,7 @@ package be.kdg.mazeGame;
  */
 
 import be.kdg.mazeGame.model.MazeGame;
+import be.kdg.mazeGame.model.Player;
 import be.kdg.mazeGame.view.MazeGamePresenter;
 import be.kdg.mazeGame.view.MazeGameView;
 import javafx.application.Application;
@@ -17,10 +18,9 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
+        Player player = new Player();
         MazeGameView view = new MazeGameView();
-
-        MazeGame model = new MazeGame();
-
+        MazeGame model = new MazeGame(player);
         MazeGamePresenter presenter = new MazeGamePresenter(view, model);
 
         Scene scene = new Scene(view);
@@ -30,6 +30,8 @@ public class Main extends Application {
         stage.setWidth(800);
         stage.setHeight(600);
         stage.show();
+
+        view.requestFocus(); // so view gets keyboard focus when window opens
     }
 
     public static void main(String[] args) {
