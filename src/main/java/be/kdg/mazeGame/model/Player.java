@@ -5,10 +5,11 @@ public class Player {
     private int score;
     private Color color;
     private double speed;
-    private double x;
-    private double y;
+    private int x = 0;
+    private int y = 0;
 
     public Player(String name) {
+        this.name = name;
     }
 
     public String getName() {
@@ -35,19 +36,19 @@ public class Player {
         return speed;
     }
 
-    public double getX() {
+    public int getX() {
         return x;
     }
 
-    public void setX(double x) {
+    public void setX(int x) {
         this.x = x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
     }
 
-    public void setY(double y) {
+    public void setY(int y) {
         this.y = y;
     }
 }

@@ -1,6 +1,7 @@
 package be.kdg.mazeGame;
 
 import be.kdg.mazeGame.model.MazeGame;
+import be.kdg.mazeGame.model.Player;
 import be.kdg.mazeGame.view.MazeGamePresenter;
 import be.kdg.mazeGame.view.MazeGameView;
 import javafx.application.Application;
@@ -13,7 +14,9 @@ public class Main extends Application {
 
         MazeGameView view = new MazeGameView();
 
-        MazeGame model = new MazeGame();
+        Player player = new Player("player1");
+        MazeGame model = new MazeGame(player);
+
 
         MazeGamePresenter presenter = new MazeGamePresenter(view, model);
 

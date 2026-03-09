@@ -1,32 +1,53 @@
 package be.kdg.mazeGame.view;
-
-import be.kdg.mazeGame.model.Map;
-import be.kdg.mazeGame.model.Player;
 import be.kdg.mazeGame.model.MazeGame;
+
+import javafx.scene.input.KeyEvent;
 
 public class MazeGamePresenter {
     private MazeGameView view;
     private MazeGame model;
-    private Map map;
-    private Player player;
     private final int TILESIZE = 30;
 
     public MazeGamePresenter(MazeGameView view, MazeGame model) {
         this.view = view;
         this.model = model;
-        this.map = new Map();
-        this.player = new Player("Player1");
         loadTextures();
+        view.getGameCanvas().setFocusTraversable(true);
+        view.getGameCanvas().requestFocus();
+
+
+
+        // wachten tot de stage geladen wordt vppr dat we tekenen!
         view.getGameCanvas().widthProperty().addListener((obs, oldV, newV) -> render());
         view.getGameCanvas().heightProperty().addListener((obs, oldV, newV) -> render());
+
+        view.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) addEventHandlers();
+        });
+
+
     }
 
     private void loadTextures() {
         TextureManager.loadImage("stonewall", "/stone_wall_8.png");
     }
+    private void addEventHandlers() {
+        view.getScene().setOnKeyPressed((KeyEvent event) -> {
+            switch (event.getCode()) {
+                case UP    -> model.movePlayer(0, -1);
+                case DOWN  -> model.movePlayer(0, 1);
+                case LEFT  -> model.movePlayer(-1, 0);
+                case RIGHT -> model.movePlayer(1, 0);
+            }
+            render();
+        });
+    }
+
+
+
 
     private void render() {
-        int[][] mapArray = map.getMap();
+        int[][] mapArray = model.getMap().getTiles();
         int rows = mapArray.length;
         int cols = mapArray[0].length;
 
@@ -41,8 +62,8 @@ public class MazeGamePresenter {
         view.clearCanvas();
         view.drawMap(mapArray, spacingX, spacingY, TILESIZE);
 
-        double playerScreenX = spacingX + player.getX() * TILESIZE;
-        double playerScreenY = spacingY + player.getY() * TILESIZE;
+        double playerScreenX = spacingX + model.getPlayer().getX() * TILESIZE;
+        double playerScreenY = spacingY + model.getPlayer().getY() * TILESIZE;
         view.drawPlayer(playerScreenX, playerScreenY, TILESIZE);
     }
 }
