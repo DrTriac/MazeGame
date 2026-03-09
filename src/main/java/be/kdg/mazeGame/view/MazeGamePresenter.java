@@ -6,7 +6,7 @@ import javafx.scene.input.KeyEvent;
 public class MazeGamePresenter {
     private MazeGameView view;
     private MazeGame model;
-    private final int TILESIZE = 30;
+    private final int TILESIZE = 60;
 
     public MazeGamePresenter(MazeGameView view, MazeGame model) {
         this.view = view;
@@ -56,8 +56,18 @@ public class MazeGamePresenter {
         double canvasWidth = view.getGameCanvas().getWidth();
         double canvasHeight = view.getGameCanvas().getHeight();
 
-        double spacingX = (canvasWidth - mapWidth) / 2;
-        double spacingY = (canvasHeight - mapHeight) / 2;
+
+        // in plats van de hele map in een keer te tonen gaan we de spacing latren aanpassen aan de positie van de player eodat dat zich altijd aanpast
+        double spacingX = (canvasWidth / 2) - (model.getPlayer().getX() * TILESIZE);
+        double spacingY = (canvasWidth / 2) - (model.getPlayer().getY() * TILESIZE);
+
+        // ok dat werkt maar nu gaat de camera door ook al zitten we op een hoek. omdat d eplayer vaak links boven gaat spwanen, geeft dat een slecht gecentreerde camera
+        // moeten de camera dus vast zetten zodat er niets zichtbaar is eens we op het uiterste zitten van onze map. we geven aan maximum waarde aan de spacing van onze canvas
+
+        spacingX = Math.min(0, spacingX);
+        spacingY = Math.min(0, spacingY);
+        spacingX = Math.max(canvasWidth - mapWidth, spacingX);
+        spacingY = Math.max(canvasHeight - mapHeight, spacingY);
 
         view.clearCanvas();
         view.drawMap(mapArray, spacingX, spacingY, TILESIZE);
