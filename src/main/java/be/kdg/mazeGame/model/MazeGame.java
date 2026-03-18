@@ -12,7 +12,7 @@ import java.sql.Time;
 public class MazeGame {
     private Map currentMap;
     private Player player;
-    private Time time;
+    private int timeLeft; // in seconds
 
     private static final char[][] LEVEL_ONE = new char[][]{
             {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
@@ -27,9 +27,10 @@ public class MazeGame {
             {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}
     };
 
-    public MazeGame(Player player) {
+    public MazeGame(Player player){
         this.currentMap = MapBuilder.fromCharLayout(LEVEL_ONE);
         this.player = player;
+        this.timeLeft = 10;
         int[] start = currentMap.getStartPosition();
         player.setPosition(start[0], start[1]);
     }
@@ -49,5 +50,18 @@ public class MazeGame {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public int getTimeLeft() {
+        return timeLeft;
+    }
+
+    public void decreaseTime() {
+        timeLeft--;
+    }
+
+    public boolean finished() {
+        int[] finish = currentMap.getEndPosition();
+        return player.getRow() == finish[0] && player.getColumn() == finish[1];
     }
 }

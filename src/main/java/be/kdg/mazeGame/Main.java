@@ -10,6 +10,8 @@ import be.kdg.mazeGame.model.MazeGame;
 import be.kdg.mazeGame.model.Player;
 import be.kdg.mazeGame.view.MazeGamePresenter;
 import be.kdg.mazeGame.view.MazeGameView;
+import be.kdg.mazeGame.view.StartScreenPresenter;
+import be.kdg.mazeGame.view.StartScreenView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -18,12 +20,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Player player = new Player();
-        MazeGameView view = new MazeGameView();
-        MazeGame model = new MazeGame(player);
-        MazeGamePresenter presenter = new MazeGamePresenter(view, model);
-
-        Scene scene = new Scene(view);
+        StartScreenView startScreen = new StartScreenView();
+        Scene scene = new Scene(startScreen);
 
         stage.setScene(scene);
         stage.setTitle("Maze Game");
@@ -31,7 +29,7 @@ public class Main extends Application {
         stage.setHeight(600);
         stage.show();
 
-        view.requestFocus(); // so view gets keyboard focus when window opens
+        new StartScreenPresenter(startScreen, stage);
     }
 
     public static void main(String[] args) {

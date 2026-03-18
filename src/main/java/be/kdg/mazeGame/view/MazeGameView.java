@@ -17,6 +17,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
 public class MazeGameView extends BorderPane {
+    private final Player player;
+
     private Canvas mazeCanvas;
     private StackPane mazeCanvasWrapper;
     private Label playerName;
@@ -26,7 +28,8 @@ public class MazeGameView extends BorderPane {
     private MenuItem newGame;
     private MenuItem highScores;
 
-    public MazeGameView() {
+    public MazeGameView(Player player) {
+        this.player = player;
         initialiseNodes();
         layoutNodes();
     }
@@ -34,8 +37,8 @@ public class MazeGameView extends BorderPane {
     private void initialiseNodes() {
         mazeCanvas = new Canvas(600, 600);
         mazeCanvasWrapper = new StackPane(mazeCanvas);
-        playerName = new Label("Player 1");
-        timing = new Label("00:00:00");
+        playerName = new Label(player.getPlayerName());
+        timing = new Label("Time left: 00:00");
 
         menuBar = new MenuBar();
         menu = new Menu("Maze Game");
@@ -44,6 +47,8 @@ public class MazeGameView extends BorderPane {
 
         menu.getItems().addAll(newGame, highScores);
         menuBar.getMenus().add(menu);
+
+        mazeCanvas.setFocusTraversable(true);
     }
 
     private void layoutNodes() {
@@ -109,9 +114,34 @@ public class MazeGameView extends BorderPane {
         double playerX = offsetX + player.getColumn() * cellSize + cellSize / 2;
         double playerY =  offsetY + player.getRow() * cellSize + cellSize / 2;
 
-        gc.setFill(Color.YELLOW);
+        gc.setFill(player.getPlayerColor());
         double radius = cellSize * 0.3;
         gc.fillOval(playerX - radius, playerY - radius, radius * 2, radius * 2);
+    }
+
+    public void updateTimer(int timeLeft) {
+        int minutes = timeLeft / 60;
+        int seconds = timeLeft % 60;
+        timing.setText(String.format("Time left: %02d:%02d", minutes, seconds));
+    }
+
+    public void showWinMessage(int score) {
+        int minutes = score / 60;
+        int seconds = score % 60;
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("You win!");
+        alert.setHeaderText(null);
+        alert.setContentText(String.format("Congratulations! You escaped the maze with %02d:%02d left.", minutes, seconds));
+        alert.showAndWait();
+    }
+
+    public void showLoseMessage() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Time's up!");
+        alert.setHeaderText(null);
+        alert.setContentText("You ran out of time. Try again!");
+        alert.showAndWait();
     }
 
 }

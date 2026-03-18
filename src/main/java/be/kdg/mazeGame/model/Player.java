@@ -6,26 +6,21 @@ package be.kdg.mazeGame.model;
  * Description: class to make the player and keep the score
  */
 
+import javafx.scene.paint.Color;
+
 public class Player {
-    /** private String name;
-    private int score;
-    private Color color;
-    private double speed;*/
+    private String playerName;
+    /**private int score;*/
+    private Color playerColor;
+    /**private double speed;*/
     private int row;
     private int column;
 
     public Player() {
+        this.playerName = "name";
+        this.playerColor = Color.BLUE;
         this.row = 0;
         this.column = 0;
-    }
-
-    public Player(int row, int column) {
-        /** this.name = name;
-        this.color = color;
-        this.score = 0;
-        this.speed = 1; */
-        this.row = row;
-        this.column = column;
     }
 
     public int getRow() {
@@ -41,24 +36,24 @@ public class Player {
         this.column = column;
     }
 
-    /** public String getName() {
-        return name;
+    public String getPlayerName() {
+        return playerName;
+    }
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Color getPlayerColor() {
+        return playerColor;
     }
 
+    public void setPlayerColor(Color playerColor) {
+        this.playerColor = playerColor;
+    }
+
+/**
     public int getScore() {
         return score;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 
     public double getSpeed() {
