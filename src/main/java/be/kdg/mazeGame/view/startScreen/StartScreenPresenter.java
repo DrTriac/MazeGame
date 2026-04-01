@@ -10,16 +10,12 @@ import be.kdg.mazeGame.model.Player;
 import be.kdg.mazeGame.view.gameScreen.MazeGamePresenter;
 import be.kdg.mazeGame.view.gameScreen.MazeGameView;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 public class StartScreenPresenter {
     private StartScreenView view;
-    private Stage stage;
 
-    public StartScreenPresenter(StartScreenView view, Stage stage) {
+    public StartScreenPresenter(StartScreenView view) {
         this.view = view;
-        this.stage = stage;
-
         addEventHandlers();
     }
 
@@ -32,12 +28,12 @@ public class StartScreenPresenter {
             player.setPlayerName(playerName);
 
             MazeGameView gameView = new MazeGameView();
-            MazeGame model = new MazeGame(player);
+            MazeGame model = new MazeGame(playerName);
 
             MazeGamePresenter presenter = new MazeGamePresenter(gameView, model, playerColor);
 
-            stage.getScene().setRoot(gameView);
-            gameView.requestFocus();
+            view.getScene().setRoot(gameView);
+            gameView.getScene().getWindow().sizeToScene();
         });
 
     }

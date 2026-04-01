@@ -7,8 +7,6 @@ package be.kdg.mazeGame.model;
  */
 
 
-import java.sql.Time;
-
 public class MazeGame {
     private Map currentMap;
     private Player player;
@@ -27,9 +25,10 @@ public class MazeGame {
             {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}
     };
 
-    public MazeGame(Player player){
+    public MazeGame(String playerName){
         this.currentMap = MapBuilder.fromCharLayout(LEVEL_ONE);
-        this.player = player;
+        this.player = new Player();
+        this.player.setPlayerName(playerName);
         this.timeLeft = 10;
         int[] start = currentMap.getStartPosition();
         player.setPosition(start[0], start[1]);
