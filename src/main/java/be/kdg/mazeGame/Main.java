@@ -6,12 +6,8 @@ package be.kdg.mazeGame;
  * Description: Main class
  */
 
-import be.kdg.mazeGame.model.MazeGame;
-import be.kdg.mazeGame.model.Player;
-import be.kdg.mazeGame.view.MazeGamePresenter;
-import be.kdg.mazeGame.view.MazeGameView;
-import be.kdg.mazeGame.view.StartScreenPresenter;
-import be.kdg.mazeGame.view.StartScreenView;
+import be.kdg.mazeGame.view.startScreen.StartScreenPresenter;
+import be.kdg.mazeGame.view.startScreen.StartScreenView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

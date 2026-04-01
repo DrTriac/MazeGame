@@ -1,4 +1,4 @@
-package be.kdg.mazeGame.view;
+package be.kdg.mazeGame.view.gameScreen;
 
 /**
  * Author: Astrid
@@ -6,20 +6,23 @@ package be.kdg.mazeGame.view;
  * Description: class for the presenter, to connect model and view
  */
 
-import be.kdg.mazeGame.model.MazeGame;
+import be.kdg.mazeGame.model.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class MazeGamePresenter {
     private MazeGameView view;
     private MazeGame model;
+    private Color playerColor;
     private Timeline timer;
 
-    public MazeGamePresenter(MazeGameView view, MazeGame model) {
+    public MazeGamePresenter(MazeGameView view, MazeGame model, Color playerColor) {
         this.view = view;
         this.model = model;
+        this.playerColor = playerColor;
 
         view.setFocusTraversable(true); // ensures that the view can receive keyboard iput
 
@@ -44,7 +47,8 @@ public class MazeGamePresenter {
     }
 
     private void updateView() {
-        view.drawMap(model.getCurrentMap(), model.getPlayer());
+        view.drawMap(model.getCurrentMap(), model.getPlayer(), playerColor);
+        view.getPlayerLabel().setText(model.getPlayer().getPlayerName());
     }
 
     public void startTimer() {

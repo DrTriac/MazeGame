@@ -1,11 +1,10 @@
-package be.kdg.mazeGame.view;
+package be.kdg.mazeGame.view.startScreen;
 
 /**
  * Author: Astrid
  * Date: 18/03/2026
  * Description: null.java class for the maze game.
  */
-import be.kdg.mazeGame.model.MazeGame;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;

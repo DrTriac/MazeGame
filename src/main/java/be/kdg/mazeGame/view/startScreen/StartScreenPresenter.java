@@ -1,4 +1,4 @@
-package be.kdg.mazeGame.view;
+package be.kdg.mazeGame.view.startScreen;
 
 /**
  * Author: Astrid
@@ -7,7 +7,8 @@ package be.kdg.mazeGame.view;
  */
 import be.kdg.mazeGame.model.MazeGame;
 import be.kdg.mazeGame.model.Player;
-import javafx.scene.Scene;
+import be.kdg.mazeGame.view.gameScreen.MazeGamePresenter;
+import be.kdg.mazeGame.view.gameScreen.MazeGameView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -29,12 +30,11 @@ public class StartScreenPresenter {
 
             Player player = new Player();
             player.setPlayerName(playerName);
-            player.setPlayerColor(playerColor);
 
-            MazeGameView gameView = new MazeGameView(player);
+            MazeGameView gameView = new MazeGameView();
             MazeGame model = new MazeGame(player);
 
-            MazeGamePresenter presenter = new MazeGamePresenter(gameView, model);
+            MazeGamePresenter presenter = new MazeGamePresenter(gameView, model, playerColor);
 
             stage.getScene().setRoot(gameView);
             gameView.requestFocus();

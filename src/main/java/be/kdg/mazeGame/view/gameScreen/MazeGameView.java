@@ -1,4 +1,4 @@
-package be.kdg.mazeGame.view;
+package be.kdg.mazeGame.view.gameScreen;
 
 /**
  * Author: Astrid
@@ -17,19 +17,16 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
 public class MazeGameView extends BorderPane {
-    private final Player player;
-
     private Canvas mazeCanvas;
     private StackPane mazeCanvasWrapper;
-    private Label playerName;
-    private Label timing;
+    private Label playerLabel;
+    private Label timingLabel;
     private MenuBar menuBar;
     private Menu menu;
     private MenuItem newGame;
     private MenuItem highScores;
 
-    public MazeGameView(Player player) {
-        this.player = player;
+    public MazeGameView() {
         initialiseNodes();
         layoutNodes();
     }
@@ -37,8 +34,8 @@ public class MazeGameView extends BorderPane {
     private void initialiseNodes() {
         mazeCanvas = new Canvas(600, 600);
         mazeCanvasWrapper = new StackPane(mazeCanvas);
-        playerName = new Label(player.getPlayerName());
-        timing = new Label("Time left: 00:00");
+        playerLabel = new Label(" ");
+        timingLabel = new Label("Time left: 00:00");
 
         menuBar = new MenuBar();
         menu = new Menu("Maze Game");
@@ -55,15 +52,15 @@ public class MazeGameView extends BorderPane {
         mazeCanvasWrapper.setAlignment(Pos.CENTER);
         this.setCenter(mazeCanvasWrapper);
 
-        playerName.setAlignment(Pos.CENTER);
-        playerName.setMaxWidth(Double.MAX_VALUE); //label can take the full width of its region in the borderpane
-        BorderPane.setAlignment(playerName, Pos.CENTER);
-        this.setLeft(playerName);
+        playerLabel.setAlignment(Pos.CENTER);
+        playerLabel.setMaxWidth(Double.MAX_VALUE); //label can take the full width of its region in the borderpane
+        BorderPane.setAlignment(playerLabel, Pos.CENTER);
+        this.setLeft(playerLabel);
 
-        timing.setAlignment(Pos.CENTER);
-        timing.setMaxWidth(Double.MAX_VALUE);
-        BorderPane.setAlignment(timing, Pos.CENTER);
-        this.setRight(timing);
+        timingLabel.setAlignment(Pos.CENTER);
+        timingLabel.setMaxWidth(Double.MAX_VALUE);
+        BorderPane.setAlignment(timingLabel, Pos.CENTER);
+        this.setRight(timingLabel);
 
         BorderPane.setAlignment(menuBar, Pos.CENTER_LEFT);
         this.setTop(menuBar);
@@ -73,7 +70,7 @@ public class MazeGameView extends BorderPane {
         return mazeCanvas;
     }
 
-    void drawMap(Map map, Player player) {
+    void drawMap(Map map, Player player, Color playerColor) {
         GraphicsContext gc = mazeCanvas.getGraphicsContext2D();
         gc.clearRect(0, 0, mazeCanvas.getWidth(), mazeCanvas.getHeight());
 
@@ -114,7 +111,7 @@ public class MazeGameView extends BorderPane {
         double playerX = offsetX + player.getColumn() * cellSize + cellSize / 2;
         double playerY =  offsetY + player.getRow() * cellSize + cellSize / 2;
 
-        gc.setFill(player.getPlayerColor());
+        gc.setFill(playerColor);
         double radius = cellSize * 0.3;
         gc.fillOval(playerX - radius, playerY - radius, radius * 2, radius * 2);
     }
@@ -122,7 +119,7 @@ public class MazeGameView extends BorderPane {
     public void updateTimer(int timeLeft) {
         int minutes = timeLeft / 60;
         int seconds = timeLeft % 60;
-        timing.setText(String.format("Time left: %02d:%02d", minutes, seconds));
+        timingLabel.setText(String.format("Time left: %02d:%02d", minutes, seconds));
     }
 
     public void showWinMessage(int score) {
@@ -144,4 +141,7 @@ public class MazeGameView extends BorderPane {
         alert.showAndWait();
     }
 
+    Label getPlayerLabel() {
+        return playerLabel;
+    }
 }
