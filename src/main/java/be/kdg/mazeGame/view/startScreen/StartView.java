@@ -16,7 +16,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 
-public class StartScreenView extends BorderPane {
+public class StartView extends BorderPane {
     private Button startButton;
     private Label title;
     private VBox vBox;
@@ -26,7 +26,7 @@ public class StartScreenView extends BorderPane {
     private TextField nameField;
     private ColorPicker colorPicker;
 
-    public StartScreenView() {
+    public StartView() {
         initialiseNodes();
         layoutNodes();
     }

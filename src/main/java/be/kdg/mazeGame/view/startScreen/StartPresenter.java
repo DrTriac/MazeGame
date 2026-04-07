@@ -11,10 +11,10 @@ import be.kdg.mazeGame.view.gameScreen.MazeGamePresenter;
 import be.kdg.mazeGame.view.gameScreen.MazeGameView;
 import javafx.scene.paint.Color;
 
-public class StartScreenPresenter {
-    private StartScreenView view;
+public class StartPresenter {
+    private StartView view;
 
-    public StartScreenPresenter(StartScreenView view) {
+    public StartPresenter(StartView view) {
         this.view = view;
         addEventHandlers();
     }

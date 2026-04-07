@@ -7,10 +7,17 @@ package be.kdg.mazeGame.view.gameScreen;
  */
 
 import be.kdg.mazeGame.model.*;
+import be.kdg.mazeGame.view.loseScreen.LosePresenter;
+import be.kdg.mazeGame.view.loseScreen.LoseView;
+import be.kdg.mazeGame.view.winScreen.WinPresenter;
+import be.kdg.mazeGame.view.winScreen.WinView;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class MazeGamePresenter {
@@ -57,7 +64,18 @@ public class MazeGamePresenter {
             view.updateTimer(model.getTimeLeft());
             if (model.getTimeLeft() <= 0) {
                 timer.stop();
-                Platform.runLater(() -> view.showLoseMessage()); // to fix error "showAndWait is not allowed during animation or layout processing"
+                Platform.runLater(() -> {
+                    LoseView loseView = new LoseView();
+                    LosePresenter losePresenter = new LosePresenter(model, loseView);
+                    Stage loseStage = new Stage();
+                    Scene loseScene = new Scene(loseView);
+                    loseStage.initModality(Modality.APPLICATION_MODAL); // spelvenster blokkeren
+                    loseStage.setScene(loseScene);
+                    loseStage.setX(view.getScene().getWindow().getX() + 100);
+                    loseStage.setY(view.getScene().getWindow().getY() + 100);
+
+                    loseStage.showAndWait();
+                });
             }
         }));
         timer.setCycleCount(Timeline.INDEFINITE);
@@ -69,7 +87,17 @@ public class MazeGamePresenter {
             timer.stop();
             int score = model.getTimeLeft();
             /**saveHighScore(score);*/
-            view.showWinMessage(score);
+
+            WinView winView = new WinView(score);
+            WinPresenter winPresenter = new WinPresenter(model, winView);
+            Stage winStage = new Stage();
+            Scene winScene = new Scene(winView);
+            winStage.initModality(Modality.APPLICATION_MODAL); // spelvenster blokkeren
+            winStage.setScene(winScene);
+            winStage.setX(view.getScene().getWindow().getX() + 100);
+            winStage.setY(view.getScene().getWindow().getY() + 100);
+
+            winStage.showAndWait();
         }
 
     }
