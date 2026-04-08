@@ -66,13 +66,17 @@ public class MazeGamePresenter {
                 timer.stop();
                 Platform.runLater(() -> {
                     LoseView loseView = new LoseView();
-                    LosePresenter losePresenter = new LosePresenter(model, loseView);
                     Stage loseStage = new Stage();
                     Scene loseScene = new Scene(loseView);
+
+                    Stage mainStage = (Stage) view.getScene().getWindow();
+
+                    LosePresenter losePresenter = new LosePresenter(model, playerColor,loseView, loseStage, mainStage);
+
                     loseStage.initModality(Modality.APPLICATION_MODAL); // spelvenster blokkeren
                     loseStage.setScene(loseScene);
-                    loseStage.setX(view.getScene().getWindow().getX() + 100);
-                    loseStage.setY(view.getScene().getWindow().getY() + 100);
+                    loseStage.setX(view.getScene().getWindow().getX() + 150);
+                    loseStage.setY(view.getScene().getWindow().getY() + 150);
 
                     loseStage.showAndWait();
                 });
@@ -89,13 +93,17 @@ public class MazeGamePresenter {
             /**saveHighScore(score);*/
 
             WinView winView = new WinView(score);
-            WinPresenter winPresenter = new WinPresenter(model, winView);
             Stage winStage = new Stage();
             Scene winScene = new Scene(winView);
+
+            Stage mainStage = (Stage) view.getScene().getWindow(); // to get the stage, getStage() does not exist
+
+            WinPresenter winPresenter = new WinPresenter(model, playerColor, winView, winStage, mainStage);
+
             winStage.initModality(Modality.APPLICATION_MODAL); // spelvenster blokkeren
             winStage.setScene(winScene);
-            winStage.setX(view.getScene().getWindow().getX() + 100);
-            winStage.setY(view.getScene().getWindow().getY() + 100);
+            winStage.setX(view.getScene().getWindow().getX() + 150);
+            winStage.setY(view.getScene().getWindow().getY() + 150);
 
             winStage.showAndWait();
         }
