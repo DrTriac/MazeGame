@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -91,18 +92,18 @@ public class MazeGameView extends BorderPane {
             for (int column = 0; column < map.getWidth(); column++) {
                 MapElement element = map.getTile(row, column);
 
-                switch (element) {
-                    case Wall w -> gc.setFill(Color.BLACK);
-                    case Start s -> gc.setFill(Color.RED);
-                    case Finish f -> gc.setFill(Color.GREEN);
-                    case Floor f -> gc.setFill(Color.WHITE);
-                    default -> gc.setFill(Color.PURPLE);
-                }
+                String textureName = switch (element) {
+                    case Wall w -> "wall";
+                    case Finish f -> "finish";
+                    default -> "floor";
+                };
+
+                Image texture = TextureManager.getImage(textureName);
 
                 double x = offsetX + column * cellSize;
                 double y = offsetY + row * cellSize;
 
-                gc.fillRect(x, y, cellSize, cellSize);
+                gc.drawImage(texture, x, y, cellSize, cellSize);
                 gc.setStroke(Color.GRAY);
                 gc.strokeRect(x, y, cellSize, cellSize);
             }

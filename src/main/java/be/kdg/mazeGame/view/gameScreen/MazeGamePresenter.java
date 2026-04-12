@@ -31,6 +31,8 @@ public class MazeGamePresenter {
         this.model = model;
         this.playerColor = playerColor;
 
+        loadTextures();
+
         view.setFocusTraversable(true); // ensures that the view can receive keyboard iput
 
         addEventHandlers();
@@ -84,6 +86,12 @@ public class MazeGamePresenter {
         }));
         timer.setCycleCount(Timeline.INDEFINITE);
         timer.play();
+    }
+
+    private void loadTextures() {
+        TextureManager.loadImage("wall", "/be/kdg/mazeGame/stone_wall_8.png");
+        TextureManager.loadImage("floor", "/be/kdg/mazeGame/floor.jpg");
+        TextureManager.loadImage("finish", "/be/kdg/mazeGame/finish.png");
     }
 
     private void checkWinCondition() {
