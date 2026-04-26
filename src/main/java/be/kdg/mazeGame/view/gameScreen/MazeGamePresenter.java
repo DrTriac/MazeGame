@@ -89,9 +89,9 @@ public class MazeGamePresenter {
     }
 
     private void loadTextures() {
-        TextureManager.loadImage("wall", "/be/kdg/mazeGame/stone_wall_8.png");
-        TextureManager.loadImage("floor", "/be/kdg/mazeGame/floor.jpg");
-        TextureManager.loadImage("finish", "/be/kdg/mazeGame/finish.png");
+        //TextureManager.loadImage("wall", "/stone_wall_8.png");
+        TextureManager.loadImage("floor", "/floor.jpg");
+        TextureManager.loadImage("finish", "/finish.png");
     }
 
     private void checkWinCondition() {
