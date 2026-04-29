@@ -36,7 +36,7 @@ public class StartView extends BorderPane {
         title = new Label("Maze Game");
         shadow = new DropShadow();
         background = new Image(getClass().getResource("/be/kdg/mazeGame/mazebg2.jpg").toExternalForm());
-        instructions = new Label("Instructions:\n- Use the arrow keys to move around the maze.\n- Reach the exit of the maze before the timer runs out.\n- Look for bonuses and avoid the monsters.");
+        instructions = new Label("Instructions:\n- Use the arrow keys to move around the maze.\n- Find the golden star before the timer runs out.");
         nameField = new TextField();
         nameField.setPromptText("Enter your name");
         colorPicker = new ColorPicker(Color.BLUE);

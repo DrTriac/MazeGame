@@ -16,6 +16,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -24,7 +25,9 @@ public class MazeGameView extends BorderPane {
     private Canvas mazeCanvas;
     private StackPane mazeCanvasWrapper;
     private Label playerLabel;
+    private HBox leftBox;
     private Label timingLabel;
+    private HBox rightBox;
     private MenuBar menuBar;
     private Menu menu;
     private MenuItem newGame;
@@ -38,8 +41,11 @@ public class MazeGameView extends BorderPane {
     private void initialiseNodes() {
         mazeCanvas = new Canvas(600, 600);
         mazeCanvasWrapper = new StackPane(mazeCanvas);
+
         playerLabel = new Label(" ");
+        leftBox = new HBox(playerLabel);
         timingLabel = new Label("Time left: 00:00");
+        rightBox = new HBox(timingLabel);
 
         menuBar = new MenuBar();
         menu = new Menu("Maze Game");
@@ -56,15 +62,19 @@ public class MazeGameView extends BorderPane {
         mazeCanvasWrapper.setAlignment(Pos.CENTER);
         this.setCenter(mazeCanvasWrapper);
 
-        playerLabel.setAlignment(Pos.CENTER);
-        playerLabel.setMaxWidth(Double.MAX_VALUE); //label can take the full width of its region in the borderpane
-        BorderPane.setAlignment(playerLabel, Pos.CENTER);
-        this.setLeft(playerLabel);
+        leftBox.setAlignment(Pos.CENTER);
+        leftBox.setMaxWidth(150);
+        leftBox.setMinWidth(150);
+        leftBox.setStyle("-fx-background-color: #22303C;");
+        this.setLeft(leftBox);
+        playerLabel.setStyle("-fx-font-family: 'Consolas'; -fx-text-fill: white; -fx-font-weight: bold;");
 
-        timingLabel.setAlignment(Pos.CENTER);
-        timingLabel.setMaxWidth(Double.MAX_VALUE);
-        BorderPane.setAlignment(timingLabel, Pos.CENTER);
-        this.setRight(timingLabel);
+        rightBox.setAlignment(Pos.CENTER);
+        rightBox.setMaxWidth(150);
+        rightBox.setMinWidth(150);
+        rightBox.setStyle("-fx-background-color: #22303C;");
+        this.setRight(rightBox);
+        timingLabel.setStyle("-fx-font-family: 'Consolas'; -fx-text-fill: white; -fx-font-weight: bold;");
 
         BorderPane.setAlignment(menuBar, Pos.CENTER_LEFT);
         this.setTop(menuBar);
