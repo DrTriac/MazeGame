@@ -8,6 +8,8 @@ package be.kdg.mazeGame.view.gameScreen;
 
 
 import be.kdg.mazeGame.model.*;
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -16,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 public class MazeGameView extends BorderPane {
     private Canvas mazeCanvas;
@@ -123,23 +126,21 @@ public class MazeGameView extends BorderPane {
         timingLabel.setText(String.format("Time left: %02d:%02d", minutes, seconds));
     }
 
-    public void showWinMessage(int score) {
-        int minutes = score / 60;
-        int seconds = score % 60;
+    public void showTimeAlert() {
+        Label warning = new Label("HURRY UP!");
+        warning.setStyle("-fx-text-fill: red; -fx-font-size: 48px; -fx-font-weight: bold");
+        //warning.setOpacity(0);
+        //warning.setMouseTransparent(true);
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("You win!");
-        alert.setHeaderText(null);
-        alert.setContentText(String.format("Congratulations! You escaped the maze with %02d:%02d left.", minutes, seconds));
-        alert.showAndWait();
-    }
+        mazeCanvasWrapper.getChildren().add(warning);
+        StackPane.setAlignment(warning, Pos.TOP_CENTER);
 
-    public void showLoseMessage() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Time's up!");
-        alert.setHeaderText(null);
-        alert.setContentText("You ran out of time. Try again!");
-        alert.showAndWait();
+        FadeTransition ft = new FadeTransition(Duration.millis(500), warning);
+        ft.setFromValue(0);
+        ft.setToValue(1);
+        ft.setCycleCount(Animation.INDEFINITE);
+        ft.setAutoReverse(true);
+        ft.play();
     }
 
     Label getPlayerLabel() {

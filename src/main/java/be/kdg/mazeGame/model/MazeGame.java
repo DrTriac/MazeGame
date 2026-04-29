@@ -29,7 +29,7 @@ public class MazeGame {
         this.currentMap = MapBuilder.fromCharLayout(LEVEL_ONE);
         this.player = new Player();
         this.player.setPlayerName(playerName);
-        this.timeLeft = 10;
+        this.timeLeft = 30;
         int[] start = currentMap.getStartPosition();
         player.setPosition(start[0], start[1]);
     }

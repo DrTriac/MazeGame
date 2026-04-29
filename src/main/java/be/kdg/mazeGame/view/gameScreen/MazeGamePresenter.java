@@ -64,7 +64,7 @@ public class MazeGamePresenter {
         timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
             model.decreaseTime();
             view.updateTimer(model.getTimeLeft());
-            if (model.getTimeLeft() <= 0) {
+            if (model.getTimeLeft() == 0) {
                 timer.stop();
                 Platform.runLater(() -> {
                     LoseView loseView = new LoseView();
@@ -82,6 +82,9 @@ public class MazeGamePresenter {
 
                     loseStage.showAndWait();
                 });
+            }
+            if (model.getTimeLeft() == 10) {
+                view.showTimeAlert();
             }
         }));
         timer.setCycleCount(Timeline.INDEFINITE);

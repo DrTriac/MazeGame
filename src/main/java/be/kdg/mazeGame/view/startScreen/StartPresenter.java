@@ -9,6 +9,8 @@ import be.kdg.mazeGame.model.MazeGame;
 import be.kdg.mazeGame.model.Player;
 import be.kdg.mazeGame.view.gameScreen.MazeGamePresenter;
 import be.kdg.mazeGame.view.gameScreen.MazeGameView;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 
 public class StartPresenter {
@@ -17,6 +19,7 @@ public class StartPresenter {
     public StartPresenter(StartView view) {
         this.view = view;
         addEventHandlers();
+        addWindowEventHandlers();
     }
 
     private void addEventHandlers() {
@@ -36,6 +39,27 @@ public class StartPresenter {
             gameView.getScene().getWindow().sizeToScene();
         });
 
+    }
+
+    public void addWindowEventHandlers() {
+        view.getScene().getWindow().setOnCloseRequest(event -> {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("This will end the game.");
+            alert.setContentText("Are you sure you want to exit?");
+            alert.setTitle("Exit");
+
+            alert.getButtonTypes().clear();
+
+            ButtonType no = new ButtonType("No");
+            ButtonType yes = new ButtonType("Yes");
+            alert.getButtonTypes().setAll(no, yes);
+
+            alert.showAndWait();
+
+            if (alert.getResult() == null || alert.getResult().equals(no)) {
+                event.consume();
+            }
+        });
     }
 
 

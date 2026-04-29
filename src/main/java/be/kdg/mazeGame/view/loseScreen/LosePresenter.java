@@ -6,6 +6,8 @@ import be.kdg.mazeGame.view.gameScreen.MazeGameView;
 import be.kdg.mazeGame.view.startScreen.StartPresenter;
 import be.kdg.mazeGame.view.startScreen.StartView;
 import be.kdg.mazeGame.view.winScreen.WinView;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -21,13 +23,14 @@ public class LosePresenter {
     private Stage loseStage;
     private Stage mainStage;
 
-    public LosePresenter(MazeGame model, Color playerColor, LoseView view, Stage loseStage, Stage  mainStage) {
+    public LosePresenter(MazeGame model, Color playerColor, LoseView view, Stage loseStage, Stage mainStage) {
         this.model = model;
         this.playerColor = playerColor;
         this.view = view;
         this.loseStage = loseStage;
         this.mainStage = mainStage;
         this.addEventHandlers();
+        this.addWindowEventHandlers();
         this.updateView();
     }
 
@@ -41,11 +44,12 @@ public class LosePresenter {
         });
 
         view.getExitButton().setOnAction(event -> {
-            System.exit(0);
+            warningAndExit();
         });
     }
 
-    private void updateView() {}
+    private void updateView() {
+    }
 
     private void playAgain() {
         loseStage.close();
@@ -62,8 +66,33 @@ public class LosePresenter {
         loseStage.close();
 
         StartView startView = new StartView();
-        new StartPresenter(startView);
-
         mainStage.getScene().setRoot(startView);
+
+        new StartPresenter(startView);
+    }
+
+    private void warningAndExit() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText("This will end the game.");
+        alert.setContentText("Are you sure you want to exit?");
+        alert.setTitle("Exit");
+
+        alert.getButtonTypes().clear();
+
+        ButtonType no = new ButtonType("No");
+        ButtonType yes = new ButtonType("Yes");
+        alert.getButtonTypes().setAll(no, yes);
+
+        alert.showAndWait();
+
+        if (alert.getResult() == null || alert.getResult().equals(no)) {
+            alert.close();
+        } else {
+            System.exit(0);
+        }
+    }
+
+    public void addWindowEventHandlers() {
+        loseStage.setOnCloseRequest(event -> goToStartScreen());
     }
 }

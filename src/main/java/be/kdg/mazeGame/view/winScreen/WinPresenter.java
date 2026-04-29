@@ -6,6 +6,8 @@ import be.kdg.mazeGame.view.gameScreen.MazeGameView;
 import be.kdg.mazeGame.view.startScreen.StartPresenter;
 import be.kdg.mazeGame.view.startScreen.StartView;
 import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -29,6 +31,7 @@ public class WinPresenter {
         this.winStage = winStage;
         this.mainStage = mainStage;
         this.addEventHandlers();
+        this.addWindowEventHandlers();
         this.updateView();
     }
 
@@ -42,7 +45,7 @@ public class WinPresenter {
         });
 
         view.getExitButton().setOnAction(event -> {
-            System.exit(0);
+            warningAndExit();
         });
     }
 
@@ -63,8 +66,32 @@ public class WinPresenter {
         winStage.close();
 
         StartView startView = new StartView();
-        new StartPresenter(startView);
-
         mainStage.getScene().setRoot(startView);
+        new StartPresenter(startView);
+    }
+
+    private void warningAndExit() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText("This will end the game.");
+        alert.setContentText("Are you sure you want to exit?");
+        alert.setTitle("Exit");
+
+        alert.getButtonTypes().clear();
+
+        ButtonType no = new ButtonType("No");
+        ButtonType yes = new ButtonType("Yes");
+        alert.getButtonTypes().setAll(no, yes);
+
+        alert.showAndWait();
+
+        if (alert.getResult() == null || alert.getResult().equals(no)) {
+            alert.close();
+        } else {
+            System.exit(0);
+        }
+    }
+
+    public void addWindowEventHandlers() {
+        winStage.setOnCloseRequest(event -> goToStartScreen());
     }
 }
