@@ -9,6 +9,8 @@ package be.kdg.mazeGame.view.gameScreen;
 import be.kdg.mazeGame.model.*;
 import be.kdg.mazeGame.view.loseScreen.LosePresenter;
 import be.kdg.mazeGame.view.loseScreen.LoseView;
+import be.kdg.mazeGame.view.startScreen.StartPresenter;
+import be.kdg.mazeGame.view.startScreen.StartView;
 import be.kdg.mazeGame.view.winScreen.WinPresenter;
 import be.kdg.mazeGame.view.winScreen.WinView;
 import javafx.animation.KeyFrame;
@@ -53,6 +55,12 @@ public class MazeGamePresenter {
                 updateView();
                 checkWinCondition();
         });
+
+        view.getNewGame().setOnAction(event -> {
+            goToStartScreen();
+        });
+
+        view.getHighScores().setOnAction(event -> {});
     }
 
     private void updateView() {
@@ -119,6 +127,14 @@ public class MazeGamePresenter {
             winStage.showAndWait();
         }
 
+    }
+
+    private void goToStartScreen() {
+        Stage mainStage = (Stage) view.getScene().getWindow();
+        StartView startView = new StartView();
+        mainStage.getScene().setRoot(startView);
+
+        new StartPresenter(startView);
     }
 
 

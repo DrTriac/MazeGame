@@ -123,7 +123,7 @@ public class MazeGameView extends BorderPane {
         }
 
         double playerX = offsetX + player.getColumn() * cellSize + cellSize / 2;
-        double playerY =  offsetY + player.getRow() * cellSize + cellSize / 2;
+        double playerY = offsetY + player.getRow() * cellSize + cellSize / 2;
 
         gc.setFill(playerColor);
         double radius = cellSize * 0.3;
@@ -155,5 +155,13 @@ public class MazeGameView extends BorderPane {
 
     Label getPlayerLabel() {
         return playerLabel;
+    }
+
+    MenuItem getNewGame() {
+        return newGame;
+    }
+
+    MenuItem getHighScores() {
+        return highScores;
     }
 }
