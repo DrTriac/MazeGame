@@ -1,9 +1,8 @@
 package be.kdg.mazeGame.model;
 
 /**
- * Author: Astrid
- * Date: 20/02/2026
- * Description: class to build the map from a character layout = factory class
+ * Author: Astrid & Thomas
+ * Description: class to build the map from a character layout
  */
 
 // class is final because a utility class should never be subclassed/extended

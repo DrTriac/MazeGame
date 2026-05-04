@@ -5,17 +5,16 @@ import be.kdg.mazeGame.view.gameScreen.MazeGamePresenter;
 import be.kdg.mazeGame.view.gameScreen.MazeGameView;
 import be.kdg.mazeGame.view.startScreen.StartPresenter;
 import be.kdg.mazeGame.view.startScreen.StartView;
-import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
- * Author: Astrid
- * Date: 07/04/2026
- * Description: null.java class for the maze game.
+ * Author: Astrid & Thomas
+ * Description: class for the presenter of the screen when you win, to connect model and view
  */
+
 public class WinPresenter {
 
     private MazeGame model;

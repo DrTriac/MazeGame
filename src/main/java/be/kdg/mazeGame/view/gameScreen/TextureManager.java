@@ -1,14 +1,12 @@
 package be.kdg.mazeGame.view.gameScreen;
 
 import javafx.scene.image.Image;
-
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Author: Astrid
- * Date: 12/04/2026
- * Description: class to hold all our textures for the map and give them a name
+ * Author: Astrid & Thomas
+ * Description: class to hold all the textures for the map and give them a name
  */
 
 public class TextureManager {

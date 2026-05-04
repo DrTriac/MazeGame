@@ -1,9 +1,8 @@
 package be.kdg.mazeGame.model;
 
 /**
- * Author: Astrid
- * Date: 20/02/2026
- * Description: class for the game itself
+ * Author: Astrid & Thomas
+ * Description: class to store and access the game itself
  */
 
 

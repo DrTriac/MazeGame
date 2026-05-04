@@ -1,9 +1,8 @@
 package be.kdg.mazeGame.model;
 
 /**
- * Author: Astrid
- * Date: 20/02/2026
- * Description: class to make the player and keep the score
+ * Author: Astrid & Thomas
+ * Description: class to store the player, its position and keep the score
  */
 
 public class Player {

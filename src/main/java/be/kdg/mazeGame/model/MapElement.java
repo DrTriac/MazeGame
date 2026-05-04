@@ -1,8 +1,7 @@
 package be.kdg.mazeGame.model;
 
 /**
- * Author: Astrid
- * Date: 20/02/2026
+ * Author: Astrid & Thomas
  * Description: abstract class for the different elements that can make up a maze
  */
 

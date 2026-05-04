@@ -1,10 +1,10 @@
 package be.kdg.mazeGame.view.startScreen;
 
 /**
- * Author: Astrid
- * Date: 18/03/2026
- * Description: null.java class for the maze game.
+ * Author: Astrid & Thomas
+ * Description: class for the presenter of the start screen, to connect model and view
  */
+
 import be.kdg.mazeGame.model.MazeGame;
 import be.kdg.mazeGame.model.Player;
 import be.kdg.mazeGame.view.gameScreen.MazeGamePresenter;

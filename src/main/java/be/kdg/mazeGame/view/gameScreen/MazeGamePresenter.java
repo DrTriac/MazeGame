@@ -1,9 +1,8 @@
 package be.kdg.mazeGame.view.gameScreen;
 
 /**
- * Author: Astrid
- * Date: 20/02/2026
- * Description: class for the presenter, to connect model and view
+ * Author: Astrid & Thomas
+ * Description: class for the presenter of the actual game, to connect model and view
  */
 
 import be.kdg.mazeGame.model.*;
@@ -64,8 +63,27 @@ public class MazeGamePresenter {
     }
 
     private void updateView() {
-        view.drawMap(model.getCurrentMap(), model.getPlayer(), playerColor);
+        view.drawMap(getMapData(model.getCurrentMap()), model.getPlayer().getColumn(), model.getPlayer().getRow(), playerColor);
         view.getPlayerLabel().setText(model.getPlayer().getPlayerName());
+    }
+
+    private String[][] getMapData(Map map) {
+        String[][] mapData = new String[map.getHeight()][map.getWidth()];
+
+        for (int row = 0; row < map.getHeight(); row++) {
+            for (int column = 0; column < map.getWidth(); column++) {
+                MapElement element = map.getTile(row, column);
+
+                String textureName = switch (element) {
+                    case Wall w -> "wall";
+                    case Finish f -> "finish";
+                    default -> "floor";
+                };
+
+                mapData[row][column] = textureName;
+            }
+        }
+        return mapData;
     }
 
     public void startTimer() {

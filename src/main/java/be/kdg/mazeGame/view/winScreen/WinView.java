@@ -8,10 +8,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 /**
- * Author: Astrid
- * Date: 07/04/2026
- * Description: null.java class for the maze game.
+ * Author: Astrid & Thomas
+ * Description: class for the graphical representation of the screen when you win
  */
+
 public class WinView extends BorderPane {
 
     private Label titleLabel;

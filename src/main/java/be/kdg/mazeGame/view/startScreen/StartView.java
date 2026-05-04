@@ -1,10 +1,10 @@
 package be.kdg.mazeGame.view.startScreen;
 
 /**
- * Author: Astrid
- * Date: 18/03/2026
- * Description: null.java class for the maze game.
+ * Author: Astrid & Thomas
+ * Description: class for the graphical representation of the start screen
  */
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;

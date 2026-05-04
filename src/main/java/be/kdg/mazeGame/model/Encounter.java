@@ -1,8 +1,7 @@
 package be.kdg.mazeGame.model;
 
 /**
- * Author: Astrid
- * Date: 20/02/2026
+ * Author: Astrid & Thomas
  * Description: abstract class for the obstacles and power-ups in the maze
  */
 

@@ -1,13 +1,11 @@
 package be.kdg.mazeGame.view.gameScreen;
 
 /**
- * Author: Astrid
- * Date: 20/02/2026
- * Description: class for the graphical representation of the maze game
+ * Author: Astrid & Thomas
+ * Description: class for the graphical representation of the game
  */
 
 
-import be.kdg.mazeGame.model.*;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
@@ -84,33 +82,26 @@ public class MazeGameView extends BorderPane {
         return mazeCanvas;
     }
 
-    void drawMap(Map map, Player player, Color playerColor) {
+    void drawMap(String[][] mapData, int playerCol, int playerRow, Color playerColor) {
         GraphicsContext gc = mazeCanvas.getGraphicsContext2D();
         gc.clearRect(0, 0, mazeCanvas.getWidth(), mazeCanvas.getHeight());
 
         // max cell size = height or width from canvas / number of columns or rows
         // from max height or width you take the smallest number to calculate your cellSize
         // so the maze fits entirely in the canvas
-        double cellSize = Math.min(mazeCanvas.getWidth() / map.getWidth(), mazeCanvas.getHeight() / map.getHeight());
+        double cellSize = Math.min(mazeCanvas.getWidth() / mapData.length, mazeCanvas.getHeight() / mapData[0].length);
 
         // calculate the actual pixel size of the map
-        double mazeWidth = map.getWidth() * cellSize;
-        double mazeHeight = map.getHeight() * cellSize;
+        double mazeWidth = mapData.length * cellSize;
+        double mazeHeight = mapData[0].length * cellSize;
 
         // centering the maze in the canvas
         double offsetX = (mazeCanvas.getWidth() - mazeWidth) / 2;
         double offsetY = (mazeCanvas.getHeight() - mazeHeight) / 2; // divided by 2 because you want the same amount of space at the top and bottom of the maze
 
-        for (int row = 0; row < map.getHeight(); row++) {
-            for (int column = 0; column < map.getWidth(); column++) {
-                MapElement element = map.getTile(row, column);
-
-                String textureName = switch (element) {
-                    case Wall w -> "wall";
-                    case Finish f -> "finish";
-                    default -> "floor";
-                };
-
+        for (int row = 0; row < mapData.length; row++) {
+            for (int column = 0; column < mapData[0].length; column++) {
+                String textureName = mapData[row][column];
                 Image texture = TextureManager.getImage(textureName);
 
                 double x = offsetX + column * cellSize;
@@ -122,8 +113,8 @@ public class MazeGameView extends BorderPane {
             }
         }
 
-        double playerX = offsetX + player.getColumn() * cellSize + cellSize / 2;
-        double playerY = offsetY + player.getRow() * cellSize + cellSize / 2;
+        double playerX = offsetX + playerCol * cellSize + cellSize / 2;
+        double playerY = offsetY + playerRow * cellSize + cellSize / 2;
 
         gc.setFill(playerColor);
         double radius = cellSize * 0.3;
@@ -139,8 +130,6 @@ public class MazeGameView extends BorderPane {
     public void showTimeAlert() {
         Label warning = new Label("HURRY UP!");
         warning.setStyle("-fx-text-fill: red; -fx-font-size: 48px; -fx-font-weight: bold");
-        //warning.setOpacity(0);
-        //warning.setMouseTransparent(true);
 
         mazeCanvasWrapper.getChildren().add(warning);
         StackPane.setAlignment(warning, Pos.TOP_CENTER);
