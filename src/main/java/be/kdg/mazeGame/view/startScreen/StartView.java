@@ -18,6 +18,7 @@ import javafx.scene.text.TextAlignment;
 
 public class StartView extends BorderPane {
     private Button startButton;
+    private Button settingsButton;
     private Label title;
     private VBox vBox;
     private Image background;
@@ -26,6 +27,7 @@ public class StartView extends BorderPane {
     private TextField nameField;
     private ColorPicker colorPicker;
 
+
     public StartView() {
         initialiseNodes();
         layoutNodes();
@@ -33,6 +35,7 @@ public class StartView extends BorderPane {
 
     private void initialiseNodes() {
         startButton = new Button("Start Game");
+        settingsButton = new Button("Settings");
         title = new Label("Maze Game");
         shadow = new DropShadow();
         background = new Image(getClass().getResource("/be/kdg/mazeGame/mazebg2.jpg").toExternalForm());
@@ -40,7 +43,7 @@ public class StartView extends BorderPane {
         nameField = new TextField();
         nameField.setPromptText("Enter your name");
         colorPicker = new ColorPicker(Color.BLUE);
-        vBox = new VBox(20, title, instructions, nameField, colorPicker, startButton);
+        vBox = new VBox(20, title, instructions, nameField, colorPicker, startButton, settingsButton);
     }
 
     private void layoutNodes() {
@@ -78,5 +81,7 @@ public class StartView extends BorderPane {
     public Button getStartButton() {
         return startButton;
     }
+
+    public Button getSettingsButton(){return settingsButton;}
 
 }

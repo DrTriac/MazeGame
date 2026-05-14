@@ -1,5 +1,10 @@
 package be.kdg.mazeGame.model;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 /**
  * Author: Astrid & Thomas
  * Description: class to store and access the game itself
@@ -10,8 +15,9 @@ public class MazeGame {
     private Map currentMap;
     private Player player;
     private int timeLeft; // in seconds
+    private static int numberOfPlays;
 
-    private static final char[][] LEVEL_ONE = new char[][]{
+    /*private static final char[][] LEVEL_ONE = new char[][]{
             {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
             {'#', 'S', '.', '.', '.', '.', '.', '.', '.', '#'},
             {'#', '#', '#', '.', '#', '#', '.', '#', '#', '#'},
@@ -22,13 +28,19 @@ public class MazeGame {
             {'#', '#', '.', '.', '#', '#', '#', '#', '.', '#'},
             {'#', '#', '.', '#', '#', '#', '#', '#', 'F', '#'},
             {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}
-    };
+    }; */
 
     public MazeGame(String playerName){
-        this.currentMap = MapBuilder.fromCharLayout(LEVEL_ONE);
+        char[][] level;
+        try {
+            level = loadLevel("level" + numberOfPlays);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        this.currentMap = MapBuilder.fromCharLayout(level);
         this.player = new Player();
         this.player.setPlayerName(playerName);
-        this.timeLeft = 30;
+        this.timeLeft = 40;
         int[] start = currentMap.getStartPosition();
         player.setPosition(start[0], start[1]);
     }
@@ -62,4 +74,80 @@ public class MazeGame {
         int[] finish = currentMap.getEndPosition();
         return player.getRow() == finish[0] && player.getColumn() == finish[1];
     }
+
+    private static char[][] loadLevel(String filename) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(MazeGame.class.getResourceAsStream("/be/kdg/mazeGame/Levels/" + filename))))) {
+            List<String> lines = new ArrayList<>();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lines.add(line);
+            }
+
+            char[][] level = new char[lines.size()][];
+            for (int i = 0; i<lines.size(); i++)
+            {
+                level[i] = lines.get(i).toCharArray();
+            }
+            return level;
+        }
+    }
+
+    public int increaseNumberOfPlays()
+    {
+        numberOfPlays++;
+        System.out.println(numberOfPlays);
+        return numberOfPlays;
+
+    }
+
+    private int getNumberOfPlays()
+    {
+        return numberOfPlays;
+    }
+    public void writeScore(String playerName, int score) throws IOException {
+        String filename = System.getProperty("user.dir") + "/src/main/resources/be/kdg/mazeGame/highscores.csv";
+        System.out.println(filename);
+        boolean found = false;
+        List<String[]> scores = readScores();
+        for (String[] entry : scores) {
+            if (entry[0].equals(playerName)) {
+                found = true;
+                if (score > Integer.parseInt(entry[1])) {
+                    entry[1] = String.valueOf(score);
+                }
+                break;
+            }
+        }
+
+        if (!found) {
+            scores.add(new String[]{playerName, String.valueOf(score)});
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, false))) {
+            for (String[] entry : scores) {
+                writer.write(entry[0] + "," + entry[1]);
+                writer.newLine();
+            }
+        }
+    }
+
+    public static List<String[]> readScores() throws IOException {
+        List<String[]> scores = new ArrayList<>();
+        File file = new File(System.getProperty("user.dir") + "/src/main/resources/be/kdg/mazeGame/highscores.csv");
+        if (!file.exists()) return scores;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.isBlank()) continue;
+                String[] entry = line.split(",");
+                if (entry.length < 2) continue;
+                scores.add(entry);
+                System.out.println(entry[0] + " | " + entry[1]);
+            }
+        }
+        return scores;
+    }
+
+
 }

@@ -7,15 +7,15 @@ package be.kdg.mazeGame.model;
 
 public class Player {
     private String playerName;
-    /**private int score;*/
-    /**private double speed;*/
     private int row;
     private int column;
+    private int score;
 
     public Player() {
         this.playerName = "name";
         this.row = 0;
         this.column = 0;
+        this.score = 0;
     }
 
     public int getRow() {
@@ -38,12 +38,14 @@ public class Player {
         this.playerName = playerName;
     }
 
-/**
+
     public int getScore() {
         return score;
     }
 
-    public double getSpeed() {
-        return speed;
-    } */
+    public void setScore(int score)
+    {
+        this.score += score;
+    }
+
 }

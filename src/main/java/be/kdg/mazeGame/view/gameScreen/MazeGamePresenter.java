@@ -126,10 +126,11 @@ public class MazeGamePresenter {
     private void checkWinCondition() {
         if (model.finished()) {
             timer.stop();
-            int score = model.getTimeLeft();
+            model.getPlayer().setScore(model.getTimeLeft() * 1000);
+            int totalScore = model.getPlayer().getScore();
             /**saveHighScore(score);*/
 
-            WinView winView = new WinView(score);
+            WinView winView = new WinView(model.getPlayer().getScore(), model.getTimeLeft());
             Stage winStage = new Stage();
             Scene winScene = new Scene(winView);
 

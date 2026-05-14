@@ -9,6 +9,8 @@ import be.kdg.mazeGame.model.MazeGame;
 import be.kdg.mazeGame.model.Player;
 import be.kdg.mazeGame.view.gameScreen.MazeGamePresenter;
 import be.kdg.mazeGame.view.gameScreen.MazeGameView;
+import be.kdg.mazeGame.view.settingsScreen.SettingsPresenter;
+import be.kdg.mazeGame.view.settingsScreen.SettingsView;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
@@ -37,6 +39,13 @@ public class StartPresenter {
 
             view.getScene().setRoot(gameView);
             gameView.getScene().getWindow().sizeToScene();
+
+        });
+        view.getSettingsButton().setOnAction(actionEvent -> {
+            SettingsView settingsView = new SettingsView();
+            SettingsPresenter settingsPresenter = new SettingsPresenter(settingsView);
+            view.getScene().setRoot(settingsView);
+
         });
 
     }

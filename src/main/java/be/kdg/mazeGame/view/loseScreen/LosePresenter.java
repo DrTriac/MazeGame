@@ -10,6 +10,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 /**
  * Author: Astrid & Thomas
  * Description: class for the presenter of the screen when you lose, to connect model and view
@@ -21,6 +23,7 @@ public class LosePresenter {
     private LoseView view;
     private Stage loseStage;
     private Stage mainStage;
+    private int score;
 
     public LosePresenter(MazeGame model, Color playerColor, LoseView view, Stage loseStage, Stage mainStage) {
         this.model = model;
@@ -28,9 +31,11 @@ public class LosePresenter {
         this.view = view;
         this.loseStage = loseStage;
         this.mainStage = mainStage;
+        this.score = model.getPlayer().getScore();
         this.addEventHandlers();
         this.addWindowEventHandlers();
         this.updateView();
+
     }
 
     private void addEventHandlers() {
@@ -51,26 +56,46 @@ public class LosePresenter {
     }
 
     private void playAgain() {
+        try {
+            model.writeScore(model.getPlayer().getPlayerName(),model.getPlayer().getScore());
+        } catch (IOException e) {
+            System.err.println("failed to write players score" + e.getMessage());
+        }
+
         loseStage.close();
 
         MazeGameView mazeGameView = new MazeGameView();
         MazeGame newModel = new MazeGame(model.getPlayer().getPlayerName());
         new MazeGamePresenter(mazeGameView, newModel, playerColor);
+        newModel.getPlayer().setScore(score);
 
         mainStage.getScene().setRoot(mazeGameView);
         mainStage.sizeToScene();
     }
 
     private void goToStartScreen() {
+
+        try {
+            model.writeScore(model.getPlayer().getPlayerName(),model.getPlayer().getScore());
+        } catch (IOException e) {
+            System.err.println("failed to write players score" + e.getMessage());
+
         loseStage.close();
 
         StartView startView = new StartView();
         mainStage.getScene().setRoot(startView);
 
         new StartPresenter(startView);
+        }
     }
 
     private void warningAndExit() {
+        try {
+            model.writeScore(model.getPlayer().getPlayerName(),model.getPlayer().getScore());
+        } catch (IOException e) {
+            System.err.println("failed to write players score" + e.getMessage());
+        }
+
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setHeaderText("This will end the game.");
         alert.setContentText("Are you sure you want to exit?");
