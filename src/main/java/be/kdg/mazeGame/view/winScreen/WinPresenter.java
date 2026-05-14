@@ -68,8 +68,6 @@ public class WinPresenter {
         new MazeGamePresenter(mazeGameView, newModel, playerColor);
         newModel.getPlayer().setScore(score);
 
-
-
         mainStage.getScene().setRoot(mazeGameView);
         mainStage.sizeToScene();
     }

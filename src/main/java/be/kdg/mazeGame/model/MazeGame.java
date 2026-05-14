@@ -15,20 +15,8 @@ public class MazeGame {
     private Map currentMap;
     private Player player;
     private int timeLeft; // in seconds
-    private static int numberOfPlays;
+    private static int numberOfPlays = 1;
 
-    /*private static final char[][] LEVEL_ONE = new char[][]{
-            {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
-            {'#', 'S', '.', '.', '.', '.', '.', '.', '.', '#'},
-            {'#', '#', '#', '.', '#', '#', '.', '#', '#', '#'},
-            {'#', '.', '.', '.', '.', '#', '.', '#', '#', '#'},
-            {'#', '#', '.', '.', '.', '#', '.', '.', '.', '#'},
-            {'#', '#', '#', '.', '#', '#', '#', '#', '.', '#'},
-            {'#', '#', '#', '.', '#', '.', '.', '.', '.', '#'},
-            {'#', '#', '.', '.', '#', '#', '#', '#', '.', '#'},
-            {'#', '#', '.', '#', '#', '#', '#', '#', 'F', '#'},
-            {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}
-    }; */
 
     public MazeGame(String playerName){
         char[][] level;

@@ -79,14 +79,13 @@ public class LosePresenter {
             model.writeScore(model.getPlayer().getPlayerName(),model.getPlayer().getScore());
         } catch (IOException e) {
             System.err.println("failed to write players score" + e.getMessage());
+        }
 
         loseStage.close();
 
         StartView startView = new StartView();
         mainStage.getScene().setRoot(startView);
-
         new StartPresenter(startView);
-        }
     }
 
     private void warningAndExit() {
