@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
@@ -23,13 +24,16 @@ public class MazeGameView extends BorderPane {
     private Canvas mazeCanvas;
     private StackPane mazeCanvasWrapper;
     private Label playerLabel;
-    private HBox leftBox;
+    private Label levelLabel;
+    private VBox leftBox;
     private Label timingLabel;
-    private HBox rightBox;
+    private VBox rightBox;
     private MenuBar menuBar;
     private Menu menu;
     private MenuItem newGame;
     private MenuItem highScores;
+    private MenuItem settings;
+    private MenuItem credits;
 
     public MazeGameView() {
         initialiseNodes();
@@ -41,16 +45,19 @@ public class MazeGameView extends BorderPane {
         mazeCanvasWrapper = new StackPane(mazeCanvas);
 
         playerLabel = new Label(" ");
-        leftBox = new HBox(playerLabel);
+        levelLabel = new Label("Level ");
+        leftBox = new VBox(playerLabel, levelLabel);
         timingLabel = new Label("Time left: 00:00");
-        rightBox = new HBox(timingLabel);
+        rightBox = new VBox(timingLabel);
 
         menuBar = new MenuBar();
         menu = new Menu("Maze Game");
         newGame = new MenuItem("New game");
         highScores = new MenuItem("High Scores");
+        settings = new MenuItem("Settings");
+        credits = new MenuItem("Credits");
 
-        menu.getItems().addAll(newGame, highScores);
+        menu.getItems().addAll(newGame, highScores, settings, credits);
         menuBar.getMenus().add(menu);
 
         mazeCanvas.setFocusTraversable(true);
@@ -61,11 +68,13 @@ public class MazeGameView extends BorderPane {
         this.setCenter(mazeCanvasWrapper);
 
         leftBox.setAlignment(Pos.CENTER);
+        leftBox.setSpacing(20);
         leftBox.setMaxWidth(150);
         leftBox.setMinWidth(150);
         leftBox.setStyle("-fx-background-color: #22303C;");
         this.setLeft(leftBox);
         playerLabel.setStyle("-fx-font-family: 'Consolas'; -fx-text-fill: white; -fx-font-weight: bold;");
+        levelLabel.setStyle("-fx-font-family: 'Consolas'; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 28px;");
 
         rightBox.setAlignment(Pos.CENTER);
         rightBox.setMaxWidth(150);
@@ -152,11 +161,23 @@ public class MazeGameView extends BorderPane {
         return playerLabel;
     }
 
+    Label getLevelLabel() {
+        return levelLabel;
+    }
+
     MenuItem getNewGame() {
         return newGame;
     }
 
     MenuItem getHighScores() {
         return highScores;
+    }
+
+    MenuItem getSettings() {
+        return settings;
+    }
+
+    MenuItem getCredits() {
+        return credits;
     }
 }

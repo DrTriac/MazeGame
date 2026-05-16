@@ -24,7 +24,7 @@ public class Main extends Application {
         stage.setHeight(600);
         stage.show();
 
-        new StartPresenter(startScreen);
+        new StartPresenter(startScreen, stage);
     }
 
     public static void main(String[] args) {

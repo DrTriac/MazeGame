@@ -15,16 +15,19 @@ public class MazeGame {
     private Map currentMap;
     private Player player;
     private int timeLeft; // in seconds
-    private static int numberOfPlays = 1;
+    private int numberOfPlays;
 
 
-    public MazeGame(String playerName){
+    public MazeGame(String playerName, int numberOfPlays){
+        this.numberOfPlays = numberOfPlays;
+
         char[][] level;
         try {
             level = loadLevel("level" + numberOfPlays);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         this.currentMap = MapBuilder.fromCharLayout(level);
         this.player = new Player();
         this.player.setPlayerName(playerName);
@@ -88,7 +91,7 @@ public class MazeGame {
 
     }
 
-    private int getNumberOfPlays()
+    public int getNumberOfPlays()
     {
         return numberOfPlays;
     }

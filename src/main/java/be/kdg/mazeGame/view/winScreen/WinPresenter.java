@@ -64,8 +64,8 @@ public class WinPresenter {
         winStage.close();
         model.increaseNumberOfPlays();
         MazeGameView mazeGameView = new MazeGameView();
-        MazeGame newModel = new MazeGame(model.getPlayer().getPlayerName());
-        new MazeGamePresenter(mazeGameView, newModel, playerColor);
+        MazeGame newModel = new MazeGame(model.getPlayer().getPlayerName(), model.getNumberOfPlays());
+        new MazeGamePresenter(mazeGameView, mainStage, newModel, playerColor);
         newModel.getPlayer().setScore(score);
 
         mainStage.getScene().setRoot(mazeGameView);
@@ -84,7 +84,7 @@ public class WinPresenter {
 
         StartView startView = new StartView();
         mainStage.getScene().setRoot(startView);
-        new StartPresenter(startView);
+        new StartPresenter(startView, mainStage);
     }
 
     private void warningAndExit() {

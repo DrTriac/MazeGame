@@ -3,6 +3,7 @@ package be.kdg.mazeGame.view.creditsScreen;
 import be.kdg.mazeGame.view.settingsScreen.SettingsPresenter;
 import be.kdg.mazeGame.view.settingsScreen.SettingsView;
 import javafx.scene.Parent;
+import javafx.stage.Stage;
 
 /**
  * Author: Astrid & Thomas
@@ -11,18 +12,18 @@ import javafx.scene.Parent;
 
 public class CreditsPresenter {
     private CreditsView view;
+    private Stage stage;
     private boolean soundOn = true;
 
-    public CreditsPresenter(CreditsView view) {
+    public CreditsPresenter(CreditsView view, Stage stage) {
         this.view = view;
+        this.stage = stage;
         addEventHandlers();
     }
 
     private void addEventHandlers() {
         view.getBackButton().setOnAction(event -> {
-            SettingsView settingsView = new SettingsView();
-            new SettingsPresenter(settingsView);
-            view.getScene().setRoot(settingsView);
+            stage.close();
         });
     }
 }
