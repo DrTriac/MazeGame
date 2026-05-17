@@ -5,12 +5,11 @@ package be.kdg.mazeGame.model;
  * Description: class to build the map from a character layout
  */
 
-// class is final because a utility class should never be subclassed/extended
 public final class MapBuilder {
 
-    private MapBuilder(){} // to prevent the creation of a MapBuilder-object outside the class
+    private MapBuilder() {
+    }
 
-    // methods are static so you do not need to create an object of MapBuilder to use the methods --> utility class
     public static Map fromCharLayout(char[][] layout) {
         int rows = layout.length;
         int columns = layout[0].length;

@@ -26,16 +26,15 @@ public class WinPresenter {
     private Stage mainStage;
     private int score;
 
-    public WinPresenter(MazeGame model, Color playerColor, WinView view, Stage winStage, Stage  mainStage) {
+    public WinPresenter(MazeGame model, Color playerColor, WinView view, Stage winStage, Stage mainStage) {
         this.model = model;
         this.playerColor = playerColor;
         this.view = view;
         this.winStage = winStage;
         this.mainStage = mainStage;
         this.score = model.getPlayer().getScore();
-        this.addEventHandlers();
-        this.addWindowEventHandlers();
-        this.updateView();
+        addEventHandlers();
+        addWindowEventHandlers();
     }
 
     private void addEventHandlers() {
@@ -52,13 +51,11 @@ public class WinPresenter {
         });
     }
 
-    private void updateView() {}
-
     private void nextLevel() {
         try {
-            model.writeScore(model.getPlayer().getPlayerName(),model.getPlayer().getScore());
+            model.writeScore(model.getPlayer().getPlayerName(), model.getPlayer().getScore());
         } catch (IOException e) {
-            System.err.println("failed to write players score" + e.getMessage());
+            System.err.println("Failed to write players score" + e.getMessage());
         }
 
         winStage.close();
@@ -75,9 +72,9 @@ public class WinPresenter {
     private void goToStartScreen() {
 
         try {
-            model.writeScore(model.getPlayer().getPlayerName(),model.getPlayer().getScore());
+            model.writeScore(model.getPlayer().getPlayerName(), model.getPlayer().getScore());
         } catch (IOException e) {
-            System.err.println("failed to write players score" + e.getMessage());
+            System.err.println("Failed to write players score" + e.getMessage());
         }
 
         winStage.close();
@@ -89,9 +86,9 @@ public class WinPresenter {
 
     private void warningAndExit() {
         try {
-            model.writeScore(model.getPlayer().getPlayerName(),model.getPlayer().getScore());
+            model.writeScore(model.getPlayer().getPlayerName(), model.getPlayer().getScore());
         } catch (IOException e) {
-            System.err.println("failed to write players score" + e.getMessage());
+            System.err.println("Failed to write players score" + e.getMessage());
         }
 
         Alert alert = new Alert(Alert.AlertType.WARNING);

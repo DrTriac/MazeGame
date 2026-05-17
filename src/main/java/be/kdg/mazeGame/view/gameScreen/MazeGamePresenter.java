@@ -1,10 +1,5 @@
 package be.kdg.mazeGame.view.gameScreen;
 
-/**
- * Author: Astrid & Thomas
- * Description: class for the presenter of the actual game, to connect model and view
- */
-
 import be.kdg.mazeGame.model.*;
 import be.kdg.mazeGame.view.creditsScreen.CreditsPresenter;
 import be.kdg.mazeGame.view.creditsScreen.CreditsView;
@@ -30,6 +25,11 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
+/**
+ * Author: Astrid & Thomas
+ * Description: class for the presenter of the actual game, to connect model and view
+ */
+
 public class MazeGamePresenter {
     private MazeGameView view;
     private Stage mainStage;
@@ -45,13 +45,13 @@ public class MazeGamePresenter {
 
         loadTextures();
 
-        view.setFocusTraversable(true); // ensures that the view can receive keyboard iput
+        view.setFocusTraversable(true);
 
         addEventHandlers();
         updateView();
         startTimer();
 
-        Platform.runLater(() -> view.getMazeCanvas().requestFocus()); // request focus on the canvas after the window appears
+        Platform.runLater(() -> view.getMazeCanvas().requestFocus());
     }
 
     private void addEventHandlers() {
@@ -114,13 +114,13 @@ public class MazeGamePresenter {
             if (model.getTimeLeft() == 0) {
                 timer.stop();
                 Platform.runLater(() -> {
-                    LoseView loseView = new LoseView();
+                    LoseView loseView = new LoseView(model.getPlayer().getScore());
                     Stage loseStage = new Stage();
                     Scene loseScene = new Scene(loseView);
 
                     new LosePresenter(model, playerColor, loseView, loseStage, mainStage);
 
-                    loseStage.initModality(Modality.APPLICATION_MODAL); // spelvenster blokkeren
+                    loseStage.initModality(Modality.APPLICATION_MODAL);
                     loseStage.setScene(loseScene);
                     loseStage.setX(view.getScene().getWindow().getX() + 150);
                     loseStage.setY(view.getScene().getWindow().getY() + 150);
@@ -155,7 +155,7 @@ public class MazeGamePresenter {
 
                 new WinPresenter(model, playerColor, winView, winStage, mainStage);
 
-                winStage.initModality(Modality.APPLICATION_MODAL); // spelvenster blokkeren
+                winStage.initModality(Modality.APPLICATION_MODAL);
                 winStage.setScene(winScene);
                 winStage.setX(view.getScene().getWindow().getX() + 150);
                 winStage.setY(view.getScene().getWindow().getY() + 150);
@@ -166,7 +166,7 @@ public class MazeGamePresenter {
                 try {
                     model.writeScore(model.getPlayer().getPlayerName(), model.getPlayer().getScore());
                 } catch (IOException e) {
-                    System.err.println("failed to write players score" + e.getMessage());
+                    System.err.println("Failed to write players score" + e.getMessage());
                 }
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -224,6 +224,4 @@ public class MazeGamePresenter {
         creditsStage.setHeight(400);
         creditsStage.showAndWait();
     }
-
-
 }

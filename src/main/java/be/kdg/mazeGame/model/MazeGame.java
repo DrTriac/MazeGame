@@ -10,7 +10,6 @@ import java.util.Objects;
  * Description: class to store and access the game itself
  */
 
-
 public class MazeGame {
     private Map currentMap;
     private Player player;
@@ -18,7 +17,7 @@ public class MazeGame {
     private int numberOfPlays;
 
 
-    public MazeGame(String playerName, int numberOfPlays){
+    public MazeGame(String playerName, int numberOfPlays) {
         this.numberOfPlays = numberOfPlays;
 
         char[][] level;
@@ -75,26 +74,23 @@ public class MazeGame {
             }
 
             char[][] level = new char[lines.size()][];
-            for (int i = 0; i<lines.size(); i++)
-            {
+            for (int i = 0; i < lines.size(); i++) {
                 level[i] = lines.get(i).toCharArray();
             }
             return level;
         }
     }
 
-    public int increaseNumberOfPlays()
-    {
+    public void increaseNumberOfPlays() {
         numberOfPlays++;
         System.out.println(numberOfPlays);
-        return numberOfPlays;
 
     }
 
-    public int getNumberOfPlays()
-    {
+    public int getNumberOfPlays() {
         return numberOfPlays;
     }
+
     public void writeScore(String playerName, int score) throws IOException {
         String filename = System.getProperty("user.dir") + "/src/main/resources/be/kdg/mazeGame/highscores.csv";
         System.out.println(filename);

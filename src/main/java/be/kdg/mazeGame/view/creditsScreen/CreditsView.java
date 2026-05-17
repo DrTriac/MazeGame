@@ -31,7 +31,7 @@ public class CreditsView extends BorderPane {
         title = new Label("Dr_Triac \n ToveFac");
         shadow = new DropShadow();
         background = new Image(getClass().getResource("/be/kdg/mazeGame/mazebg2.jpg").toExternalForm());
-        vBox = new VBox(20, title,backButton);
+        vBox = new VBox(20, title, backButton);
     }
 
     private void layoutNodes() {
@@ -51,11 +51,9 @@ public class CreditsView extends BorderPane {
         this.setBackground(new Background(bgImage));
     }
 
-    public Button getBackButton()
-    {
+    public Button getBackButton() {
         return backButton;
     }
-
 
 
 }

@@ -2,7 +2,7 @@ package be.kdg.mazeGame.model;
 
 /**
  * Author: Astrid & Thomas
- * Description: abstract class for the obstacles and power-ups in the maze
+ * Description: abstract class for the obstacles and power-ups in the maze --> not in use yet
  */
 
 public abstract class Encounter extends MapElement {

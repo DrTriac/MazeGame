@@ -1,16 +1,15 @@
 package be.kdg.mazeGame;
 
-/**
- * Author: Astrid
- * Date: 20/02/2026
- * Description: Main class
- */
-
 import be.kdg.mazeGame.view.startScreen.StartPresenter;
 import be.kdg.mazeGame.view.startScreen.StartView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+/**
+ * Author: Astrid & Thomas
+ * Description: Main class
+ */
 
 public class Main extends Application {
     @Override

@@ -5,7 +5,6 @@ package be.kdg.mazeGame.model;
  * Description: class for the map element floor
  */
 
-
 public class Floor extends MapElement {
     @Override
     public boolean isWalkable() {

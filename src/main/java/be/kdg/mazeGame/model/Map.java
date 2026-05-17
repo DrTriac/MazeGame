@@ -50,7 +50,7 @@ public class Map {
         return new int[]{startRow, startColumn};
     }
 
-    public int [] getEndPosition() {
+    public int[] getEndPosition() {
         return new int[]{endRow, endColumn};
     }
 

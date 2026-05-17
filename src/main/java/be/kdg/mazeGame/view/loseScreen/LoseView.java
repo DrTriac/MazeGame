@@ -20,16 +20,16 @@ public class LoseView extends BorderPane {
     private Button menuButton;
     private Button exitButton;
 
-    public LoseView() {
-        initialiseNodes();
+    public LoseView(int score) {
+        initialiseNodes(score);
         layoutNodes();
     }
 
-    private void initialiseNodes() {
+    private void initialiseNodes(int score) {
         titleLabel = new Label("Game Over!");
         titleLabel.setStyle("-fx-font-size: 40px; -fx-font-weight: bold;");
 
-        messageLabel = new Label(String.format("You ran out of time."));
+        messageLabel = new Label(String.format("You ran out of time. Your score is: %d.", score));
         messageLabel.setStyle("-fx-font-size: 20px;");
 
         playAgainButton = new Button("Play Again");

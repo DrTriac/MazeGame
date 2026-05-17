@@ -1,11 +1,5 @@
 package be.kdg.mazeGame.view.gameScreen;
 
-/**
- * Author: Astrid & Thomas
- * Description: class for the graphical representation of the game
- */
-
-
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
@@ -14,11 +8,15 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+
+/**
+ * Author: Astrid & Thomas
+ * Description: class for the graphical representation of the game
+ */
 
 public class MazeGameView extends BorderPane {
     private Canvas mazeCanvas;
@@ -95,24 +93,10 @@ public class MazeGameView extends BorderPane {
         GraphicsContext gc = mazeCanvas.getGraphicsContext2D();
         gc.clearRect(0, 0, mazeCanvas.getWidth(), mazeCanvas.getHeight());
 
-        // max cell size = height or width from canvas / number of columns or rows
-        // from max height or width you take the smallest number to calculate your cellSize
-        // so the maze fits entirely in the canvas
-        //double cellSize = Math.min(mazeCanvas.getWidth() / mapData.length, mazeCanvas.getHeight() / mapData[0].length);
-
         double cellSize = 100;
-
-        // calculate the actual pixel size of the map
-        double mazeWidth = mapData.length * cellSize;
-        double mazeHeight = mapData[0].length * cellSize;
-
-        // centering the maze in the canvas
 
         double offsetX = Math.clamp((mazeCanvas.getWidth() / 2) - (playerCol * cellSize), mazeCanvas.getWidth() - mapData.length * cellSize, 0);
         double offsetY = Math.clamp((mazeCanvas.getHeight() / 2) - (playerRow * cellSize), mazeCanvas.getHeight() - mapData[0].length * cellSize, 0);
-
-        //double offsetX = (mazeCanvas.getWidth() - mazeWidth) / 2;
-        //double offsetY = (mazeCanvas.getHeight() - mazeHeight) / 2; // divided by 2 because you want the same amount of space at the top and bottom of the maze
 
         for (int row = 0; row < mapData.length; row++) {
             for (int column = 0; column < mapData[0].length; column++) {

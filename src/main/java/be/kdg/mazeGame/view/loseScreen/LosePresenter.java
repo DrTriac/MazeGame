@@ -32,10 +32,8 @@ public class LosePresenter {
         this.loseStage = loseStage;
         this.mainStage = mainStage;
         this.score = model.getPlayer().getScore();
-        this.addEventHandlers();
-        this.addWindowEventHandlers();
-        this.updateView();
-
+        addEventHandlers();
+        addWindowEventHandlers();
     }
 
     private void addEventHandlers() {
@@ -52,14 +50,11 @@ public class LosePresenter {
         });
     }
 
-    private void updateView() {
-    }
-
     private void playAgain() {
         try {
-            model.writeScore(model.getPlayer().getPlayerName(),model.getPlayer().getScore());
+            model.writeScore(model.getPlayer().getPlayerName(), model.getPlayer().getScore());
         } catch (IOException e) {
-            System.err.println("failed to write players score" + e.getMessage());
+            System.err.println("Failed to write players score" + e.getMessage());
         }
 
         loseStage.close();
@@ -74,11 +69,10 @@ public class LosePresenter {
     }
 
     private void goToStartScreen() {
-
         try {
-            model.writeScore(model.getPlayer().getPlayerName(),model.getPlayer().getScore());
+            model.writeScore(model.getPlayer().getPlayerName(), model.getPlayer().getScore());
         } catch (IOException e) {
-            System.err.println("failed to write players score" + e.getMessage());
+            System.err.println("Failed to write players score" + e.getMessage());
         }
 
         loseStage.close();
@@ -90,9 +84,9 @@ public class LosePresenter {
 
     private void warningAndExit() {
         try {
-            model.writeScore(model.getPlayer().getPlayerName(),model.getPlayer().getScore());
+            model.writeScore(model.getPlayer().getPlayerName(), model.getPlayer().getScore());
         } catch (IOException e) {
-            System.err.println("failed to write players score" + e.getMessage());
+            System.err.println("Failed to write players score" + e.getMessage());
         }
 
         Alert alert = new Alert(Alert.AlertType.WARNING);

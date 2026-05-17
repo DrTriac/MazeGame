@@ -1,10 +1,5 @@
 package be.kdg.mazeGame.view.startScreen;
 
-/**
- * Author: Astrid & Thomas
- * Description: class for the presenter of the start screen, to connect model and view
- */
-
 import be.kdg.mazeGame.model.EmptyNameException;
 import be.kdg.mazeGame.model.MazeGame;
 import be.kdg.mazeGame.model.Player;
@@ -18,6 +13,11 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+/**
+ * Author: Astrid & Thomas
+ * Description: class for the presenter of the start screen, to connect model and view
+ */
 
 public class StartPresenter {
     private StartView view;
@@ -102,6 +102,4 @@ public class StartPresenter {
         settingsStage.setHeight(400);
         settingsStage.showAndWait();
     }
-
-
 }

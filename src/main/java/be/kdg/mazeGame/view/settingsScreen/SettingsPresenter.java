@@ -2,8 +2,6 @@ package be.kdg.mazeGame.view.settingsScreen;
 
 import be.kdg.mazeGame.view.creditsScreen.CreditsPresenter;
 import be.kdg.mazeGame.view.creditsScreen.CreditsView;
-import be.kdg.mazeGame.view.startScreen.StartPresenter;
-import be.kdg.mazeGame.view.startScreen.StartView;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -55,8 +53,6 @@ public class SettingsPresenter {
         view.getBackButton().setOnAction(event -> {
             stage.close();
         });
-
-
     }
 }
 

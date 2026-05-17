@@ -1,8 +1,5 @@
 package be.kdg.mazeGame.view.creditsScreen;
 
-import be.kdg.mazeGame.view.settingsScreen.SettingsPresenter;
-import be.kdg.mazeGame.view.settingsScreen.SettingsView;
-import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 /**
@@ -13,7 +10,6 @@ import javafx.stage.Stage;
 public class CreditsPresenter {
     private CreditsView view;
     private Stage stage;
-    private boolean soundOn = true;
 
     public CreditsPresenter(CreditsView view, Stage stage) {
         this.view = view;

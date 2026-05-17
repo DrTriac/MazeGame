@@ -1,10 +1,5 @@
 package be.kdg.mazeGame.view.startScreen;
 
-/**
- * Author: Astrid & Thomas
- * Description: class for the graphical representation of the start screen
- */
-
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
@@ -16,6 +11,11 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 
+/**
+ * Author: Astrid & Thomas
+ * Description: class for the graphical representation of the start screen
+ */
+
 public class StartView extends BorderPane {
     private Button startButton;
     private Button settingsButton;
@@ -26,7 +26,6 @@ public class StartView extends BorderPane {
     private Label instructions;
     private TextField nameField;
     private ColorPicker colorPicker;
-
 
     public StartView() {
         initialiseNodes();
@@ -82,6 +81,8 @@ public class StartView extends BorderPane {
         return startButton;
     }
 
-    public Button getSettingsButton(){return settingsButton;}
+    public Button getSettingsButton() {
+        return settingsButton;
+    }
 
 }

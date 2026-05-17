@@ -20,18 +20,18 @@ public class WinView extends BorderPane {
     private Button menuButton;
     private Button exitButton;
 
-    public WinView(int score,int timeLeft) {
-        initialiseNodes(timeLeft,score);
+    public WinView(int score, int timeLeft) {
+        initialiseNodes(timeLeft, score);
         layoutNodes();
     }
 
-    private void initialiseNodes(int timeleft,int score) {
+    private void initialiseNodes(int timeleft, int score) {
         titleLabel = new Label("You Win!");
         titleLabel.setStyle("-fx-font-size: 40px; -fx-font-weight: bold;");
 
         int minutes = timeleft / 60;
         int seconds = timeleft % 60;
-        scoreLabel = new Label(String.format("You escaped the maze with %02d:%02d left! Your score is: %d.", minutes, seconds,score));
+        scoreLabel = new Label(String.format("You escaped the maze with %02d:%02d left! Your score is: %d.", minutes, seconds, score));
         scoreLabel.setStyle("-fx-font-size: 20px;");
 
         nextLevelButton = new Button("Next Level");

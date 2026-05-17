@@ -2,14 +2,11 @@ package be.kdg.mazeGame.view.settingsScreen;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.TextAlignment;
 
 /**
  * Author: Astrid & Thomas
@@ -25,7 +22,6 @@ public class SettingsView extends BorderPane {
     private Image background;
     private DropShadow shadow;
 
-
     public SettingsView() {
         initialiseNodes();
         layoutNodes();
@@ -38,7 +34,7 @@ public class SettingsView extends BorderPane {
         title = new Label("Settings");
         shadow = new DropShadow();
         background = new Image(getClass().getResource("/be/kdg/mazeGame/mazebg2.jpg").toExternalForm());
-        vBox = new VBox(20, title, soundButton,creditsButton,backButton);
+        vBox = new VBox(20, title, soundButton, creditsButton, backButton);
     }
 
     private void layoutNodes() {
@@ -62,18 +58,15 @@ public class SettingsView extends BorderPane {
         return soundButton;
     }
 
-    public Button getBackButton(){return backButton;}
+    public Button getBackButton() {
+        return backButton;
+    }
 
-    public Button getCreditsButton()
-    {
+    public Button getCreditsButton() {
         return creditsButton;
     }
 
     public void setSoundButtonActive(boolean active) {
         soundButton.setStyle("-fx-font-size: 20px;" + (active ? "" : " -fx-opacity: 0.4;"));
     }
-
-
-
-
 }
