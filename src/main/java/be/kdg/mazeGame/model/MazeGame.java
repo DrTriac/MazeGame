@@ -15,11 +15,13 @@ public class MazeGame {
     private Player player;
     private int timeLeft; // in seconds
     private int numberOfPlays;
+    private final static int MAX_TIME = 40;
 
 
     public MazeGame(String playerName, int numberOfPlays) {
         this.numberOfPlays = numberOfPlays;
-
+        SoundManager tune = new SoundManager();
+        tune.playTune(System.getProperty("user.dir") + "soundsbackgroundTrack.mp3");
         char[][] level;
         try {
             level = loadLevel("level" + numberOfPlays);
@@ -30,7 +32,7 @@ public class MazeGame {
         this.currentMap = MapBuilder.fromCharLayout(level);
         this.player = new Player();
         this.player.setPlayerName(playerName);
-        this.timeLeft = 40;
+        this.timeLeft = MAX_TIME;
         int[] start = currentMap.getStartPosition();
         player.setPosition(start[0], start[1]);
     }

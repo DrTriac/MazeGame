@@ -50,15 +50,15 @@ public class LoseView extends BorderPane {
         this.setPadding(new Insets(40));
     }
 
-    public Button getPlayAgainButton() {
+    Button getPlayAgainButton() {
         return playAgainButton;
     }
 
-    public Button getMenuButton() {
+    Button getMenuButton() {
         return menuButton;
     }
 
-    public Button getExitButton() {
+    Button getExitButton() {
         return exitButton;
     }
 }

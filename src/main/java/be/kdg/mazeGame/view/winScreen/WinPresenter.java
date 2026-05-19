@@ -62,7 +62,8 @@ public class WinPresenter {
         model.increaseNumberOfPlays();
         MazeGameView mazeGameView = new MazeGameView();
         MazeGame newModel = new MazeGame(model.getPlayer().getPlayerName(), model.getNumberOfPlays());
-        new MazeGamePresenter(mazeGameView, mainStage, newModel, playerColor);
+        MazeGamePresenter mazeGamePresenter = new MazeGamePresenter(mazeGameView, mainStage, newModel, playerColor);
+        mazeGamePresenter.startTimer();
         newModel.getPlayer().setScore(score);
 
         mainStage.getScene().setRoot(mazeGameView);
@@ -70,7 +71,6 @@ public class WinPresenter {
     }
 
     private void goToStartScreen() {
-
         try {
             model.writeScore(model.getPlayer().getPlayerName(), model.getPlayer().getScore());
         } catch (IOException e) {

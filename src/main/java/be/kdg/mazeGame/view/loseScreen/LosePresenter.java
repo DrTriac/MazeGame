@@ -61,7 +61,8 @@ public class LosePresenter {
 
         MazeGameView mazeGameView = new MazeGameView();
         MazeGame newModel = new MazeGame(model.getPlayer().getPlayerName(), model.getNumberOfPlays());
-        new MazeGamePresenter(mazeGameView, mainStage, newModel, playerColor);
+        MazeGamePresenter mazeGamePresenter = new MazeGamePresenter(mazeGameView, mainStage, newModel, playerColor);
+        mazeGamePresenter.startTimer();
         newModel.getPlayer().setScore(score);
 
         mainStage.getScene().setRoot(mazeGameView);

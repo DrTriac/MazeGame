@@ -36,6 +36,7 @@ public class MazeGamePresenter {
     private MazeGame model;
     private Color playerColor;
     private Timeline timer;
+    private final static int MAX_LEVEL = 3;
 
     public MazeGamePresenter(MazeGameView view, Stage mainStage, MazeGame model, Color playerColor) {
         this.view = view;
@@ -49,7 +50,6 @@ public class MazeGamePresenter {
 
         addEventHandlers();
         updateView();
-        startTimer();
 
         Platform.runLater(() -> view.getMazeCanvas().requestFocus());
     }
@@ -67,6 +67,7 @@ public class MazeGamePresenter {
         });
 
         view.getNewGame().setOnAction(event -> {
+            timer.stop();
             goToStartScreen();
         });
 
@@ -122,8 +123,8 @@ public class MazeGamePresenter {
 
                     loseStage.initModality(Modality.APPLICATION_MODAL);
                     loseStage.setScene(loseScene);
-                    loseStage.setX(view.getScene().getWindow().getX() + 150);
-                    loseStage.setY(view.getScene().getWindow().getY() + 150);
+                    loseStage.setX(mainStage.getX() + 150);
+                    loseStage.setY(mainStage.getY() + 150);
 
                     loseStage.showAndWait();
                 });
@@ -147,7 +148,7 @@ public class MazeGamePresenter {
             timer.stop();
             model.getPlayer().setScore(model.getTimeLeft() * 1000);
 
-            if (model.getNumberOfPlays() < 3) {
+            if (model.getNumberOfPlays() < MAX_LEVEL) {
 
                 WinView winView = new WinView(model.getPlayer().getScore(), model.getTimeLeft());
                 Stage winStage = new Stage();
@@ -157,8 +158,8 @@ public class MazeGamePresenter {
 
                 winStage.initModality(Modality.APPLICATION_MODAL);
                 winStage.setScene(winScene);
-                winStage.setX(view.getScene().getWindow().getX() + 150);
-                winStage.setY(view.getScene().getWindow().getY() + 150);
+                winStage.setX(mainStage.getX() + 150);
+                winStage.setY(mainStage.getY() + 150);
 
                 winStage.showAndWait();
             } else {

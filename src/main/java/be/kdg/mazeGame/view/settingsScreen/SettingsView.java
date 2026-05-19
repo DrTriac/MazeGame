@@ -54,19 +54,19 @@ public class SettingsView extends BorderPane {
         this.setBackground(new Background(bgImage));
     }
 
-    public Button getSoundButton() {
+    Button getSoundButton() {
         return soundButton;
     }
 
-    public Button getBackButton() {
+    Button getBackButton() {
         return backButton;
     }
 
-    public Button getCreditsButton() {
+    Button getCreditsButton() {
         return creditsButton;
     }
 
-    public void setSoundButtonActive(boolean active) {
+    void setSoundButtonActive(boolean active) {
         soundButton.setStyle("-fx-font-size: 20px;" + (active ? "" : " -fx-opacity: 0.4;"));
     }
 }

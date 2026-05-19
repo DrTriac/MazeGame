@@ -47,10 +47,11 @@ public class StartPresenter {
                 MazeGameView gameView = new MazeGameView();
                 MazeGame model = new MazeGame(playerName, 1);
 
-                new MazeGamePresenter(gameView, mainStage, model, playerColor);
+                MazeGamePresenter mazeGamePresenter = new MazeGamePresenter(gameView, mainStage, model, playerColor);
+                mazeGamePresenter.startTimer();
 
                 view.getScene().setRoot(gameView);
-                gameView.getScene().getWindow().sizeToScene();
+                mainStage.sizeToScene();
 
             } catch (EmptyNameException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -68,7 +69,7 @@ public class StartPresenter {
     }
 
     public void addWindowEventHandlers() {
-        view.getScene().getWindow().setOnCloseRequest(event -> {
+        mainStage.setOnCloseRequest(event -> {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText("This will end the game.");
             alert.setContentText("Are you sure you want to exit?");

@@ -120,13 +120,13 @@ public class MazeGameView extends BorderPane {
         gc.fillOval(playerX - radius, playerY - radius, radius * 2, radius * 2);
     }
 
-    public void updateTimer(int timeLeft) {
+    void updateTimer(int timeLeft) {
         int minutes = timeLeft / 60;
         int seconds = timeLeft % 60;
         timingLabel.setText(String.format("Time left: %02d:%02d", minutes, seconds));
     }
 
-    public void showTimeAlert() {
+    void showTimeAlert() {
         Label warning = new Label("HURRY UP!");
         warning.setStyle("-fx-text-fill: red; -fx-font-size: 48px; -fx-font-weight: bold");
 

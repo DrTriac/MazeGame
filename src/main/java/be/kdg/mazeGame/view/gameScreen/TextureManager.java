@@ -13,11 +13,11 @@ import java.util.Map;
 public class TextureManager {
     private static final Map<String, Image> textures = new HashMap<>();
 
-    public static Image getImage(String imagename) {
+    static Image getImage(String imagename) {
         return textures.get(imagename);
     }
 
-    public static void loadImage(String name, String path) {
+    static void loadImage(String name, String path) {
         textures.put(name, new Image(TextureManager.class.getResource(path).toExternalForm()));
     }
 }

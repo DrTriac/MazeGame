@@ -51,7 +51,7 @@ public class CreditsView extends BorderPane {
         this.setBackground(new Background(bgImage));
     }
 
-    public Button getBackButton() {
+    Button getBackButton() {
         return backButton;
     }
 

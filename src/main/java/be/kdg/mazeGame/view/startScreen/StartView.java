@@ -69,19 +69,19 @@ public class StartView extends BorderPane {
         this.setBackground(new Background(bgImage));
     }
 
-    public TextField getNameField() {
+    TextField getNameField() {
         return nameField;
     }
 
-    public ColorPicker getColorPicker() {
+    ColorPicker getColorPicker() {
         return colorPicker;
     }
 
-    public Button getStartButton() {
+    Button getStartButton() {
         return startButton;
     }
 
-    public Button getSettingsButton() {
+    Button getSettingsButton() {
         return settingsButton;
     }
 
