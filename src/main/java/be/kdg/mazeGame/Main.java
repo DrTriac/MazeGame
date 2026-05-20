@@ -14,8 +14,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        StartView startScreen = new StartView();
-        Scene scene = new Scene(startScreen);
+        StartView startView = new StartView();
+        Scene scene = new Scene(startView);
 
         stage.setScene(scene);
         stage.setTitle("Maze Game");
@@ -23,7 +23,7 @@ public class Main extends Application {
         stage.setHeight(600);
         stage.show();
 
-        new StartPresenter(startScreen, stage);
+        new StartPresenter(startView, stage);
     }
 
     public static void main(String[] args) {

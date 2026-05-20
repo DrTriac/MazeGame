@@ -113,7 +113,7 @@ public class WinPresenter {
         }
     }
 
-    public void addWindowEventHandlers() {
+    private void addWindowEventHandlers() {
         winStage.setOnCloseRequest(event -> goToStartScreen());
     }
 }

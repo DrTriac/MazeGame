@@ -70,7 +70,7 @@ public class StartPresenter {
 
     }
 
-    public void addWindowEventHandlers() {
+    private void addWindowEventHandlers() {
         mainStage.setOnCloseRequest(event -> {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText("This will end the game.");

@@ -30,24 +30,20 @@ public class LoseView extends BorderPane {
 
     private void initialiseNodes(int score) {
         titleLabel = new Label("Game Over!");
-        titleLabel.setStyle("-fx-font-size: 40px; -fx-font-weight: bold; -fx-text-fill: #DDE6FF;");
-
         messageLabel = new Label(String.format("You ran out of time. Your score is: %d.", score));
-        messageLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #DDE6FF;");
-
         playAgainButton = new Button("Play Again");
-        playAgainButton.setPrefWidth(200);
-
         menuButton = new Button("Main Menu");
-        menuButton.setPrefWidth(200);
-
         exitButton = new Button("Exit Game");
-        exitButton.setPrefWidth(200);
-
         background = new Image(Objects.requireNonNull(getClass().getResource("/be/kdg/mazeGame/mazebg2.jpg")).toExternalForm());
     }
 
     private void layoutNodes() {
+        titleLabel.setStyle("-fx-font-size: 40px; -fx-font-weight: bold; -fx-text-fill: #DDE6FF;");
+        messageLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #DDE6FF;");
+        playAgainButton.setPrefWidth(200);
+        menuButton.setPrefWidth(200);
+        exitButton.setPrefWidth(200);
+
         VBox centerBox = new VBox(20, titleLabel, messageLabel, playAgainButton, menuButton, exitButton);
         centerBox.setAlignment(Pos.CENTER);
 

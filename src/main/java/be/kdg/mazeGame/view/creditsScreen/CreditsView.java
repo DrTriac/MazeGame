@@ -45,7 +45,6 @@ public class CreditsView extends BorderPane {
 
         backButton.setStyle("-fx-font-size: 20px;");
 
-
         vBox.setAlignment(Pos.CENTER);
         this.setCenter(vBox);
 

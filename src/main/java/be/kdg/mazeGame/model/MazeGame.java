@@ -17,8 +17,8 @@ public class MazeGame {
     private final Player player;
     private int timeLeft; // in seconds
     private int numberOfPlays;
-    private final static int MAX_TIME = 40;
-    private final static String SCORE_FILE = System.getProperty("user.home") + "/mazegame_highscores.csv";
+    private static final int MAX_TIME = 40;
+    private static final String SCORE_FILE = System.getProperty("user.home") + "/mazegame_highscores.csv";
 
 
     public MazeGame(String playerName, int numberOfPlays) {

@@ -112,7 +112,7 @@ public class LosePresenter {
         }
     }
 
-    public void addWindowEventHandlers() {
+    private void addWindowEventHandlers() {
         loseStage.setOnCloseRequest(event -> goToStartScreen());
     }
 }

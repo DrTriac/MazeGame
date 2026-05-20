@@ -30,26 +30,22 @@ public class WinView extends BorderPane {
 
     private void initialiseNodes(int timeleft, int score) {
         titleLabel = new Label("You Win!");
-        titleLabel.setStyle("-fx-font-size: 40px; -fx-font-weight: bold; -fx-text-fill: #DDE6FF;");
-
         int minutes = timeleft / 60;
         int seconds = timeleft % 60;
         scoreLabel = new Label(String.format("You escaped the maze with %02d:%02d left! Your score is: %d.", minutes, seconds, score));
-        scoreLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #DDE6FF;");
-
         nextLevelButton = new Button("Next Level");
-        nextLevelButton.setPrefWidth(200);
-
         menuButton = new Button("Main Menu");
-        menuButton.setPrefWidth(200);
-
         exitButton = new Button("Exit Game");
-        exitButton.setPrefWidth(200);
-
         background = new Image(Objects.requireNonNull(getClass().getResource("/be/kdg/mazeGame/mazebg2.jpg")).toExternalForm());
     }
 
     private void layoutNodes() {
+        titleLabel.setStyle("-fx-font-size: 40px; -fx-font-weight: bold; -fx-text-fill: #DDE6FF;");
+        scoreLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #DDE6FF;");
+        nextLevelButton.setPrefWidth(200);
+        menuButton.setPrefWidth(200);
+        exitButton.setPrefWidth(200);
+
         VBox centerBox = new VBox(20, titleLabel, scoreLabel, nextLevelButton, menuButton, exitButton);
         centerBox.setAlignment(Pos.CENTER);
 
