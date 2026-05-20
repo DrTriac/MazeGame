@@ -63,6 +63,7 @@ public class MazeGameView extends BorderPane {
 
     private void layoutNodes() {
         mazeCanvasWrapper.setAlignment(Pos.CENTER);
+        mazeCanvasWrapper.setStyle("-fx-background-color: #22303C;");
         this.setCenter(mazeCanvasWrapper);
 
         leftBox.setAlignment(Pos.CENTER);
