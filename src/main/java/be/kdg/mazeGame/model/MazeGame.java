@@ -1,5 +1,7 @@
 package be.kdg.mazeGame.model;
 
+import be.kdg.mazeGame.view.gameScreen.SoundManager;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,17 +13,17 @@ import java.util.Objects;
  */
 
 public class MazeGame {
-    private Map currentMap;
-    private Player player;
+    private final Map currentMap;
+    private final Player player;
     private int timeLeft; // in seconds
     private int numberOfPlays;
     private final static int MAX_TIME = 40;
+    private final static String SCORE_FILE = System.getProperty("user.home") + "/mazegame_highscores.csv";
 
 
     public MazeGame(String playerName, int numberOfPlays) {
         this.numberOfPlays = numberOfPlays;
-        SoundManager tune = new SoundManager();
-        tune.playTune(System.getProperty("user.dir") + "soundsbackgroundTrack.mp3");
+
         char[][] level;
         try {
             level = loadLevel("level" + numberOfPlays);
@@ -85,8 +87,6 @@ public class MazeGame {
 
     public void increaseNumberOfPlays() {
         numberOfPlays++;
-        System.out.println(numberOfPlays);
-
     }
 
     public int getNumberOfPlays() {
@@ -94,14 +94,14 @@ public class MazeGame {
     }
 
     public void writeScore(String playerName, int score) throws IOException {
-        String filename = System.getProperty("user.dir") + "/src/main/resources/be/kdg/mazeGame/highscores.csv";
-        System.out.println(filename);
-        boolean found = false;
         List<String[]> scores = readScores();
+        boolean found = false;
+
         for (String[] entry : scores) {
             if (entry[0].equals(playerName)) {
                 found = true;
-                if (score > Integer.parseInt(entry[1])) {
+                int oldScore = Integer.parseInt(entry[1]);
+                if (score > oldScore) {
                     entry[1] = String.valueOf(score);
                 }
                 break;
@@ -112,7 +112,7 @@ public class MazeGame {
             scores.add(new String[]{playerName, String.valueOf(score)});
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, false))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(SCORE_FILE, false))) {
             for (String[] entry : scores) {
                 writer.write(entry[0] + "," + entry[1]);
                 writer.newLine();
@@ -122,7 +122,8 @@ public class MazeGame {
 
     public static List<String[]> readScores() throws IOException {
         List<String[]> scores = new ArrayList<>();
-        File file = new File(System.getProperty("user.dir") + "/src/main/resources/be/kdg/mazeGame/highscores.csv");
+        File file = new File(SCORE_FILE);
+
         if (!file.exists()) return scores;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -132,11 +133,8 @@ public class MazeGame {
                 String[] entry = line.split(",");
                 if (entry.length < 2) continue;
                 scores.add(entry);
-                System.out.println(entry[0] + " | " + entry[1]);
             }
         }
         return scores;
     }
-
-
 }

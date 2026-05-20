@@ -5,6 +5,7 @@ import be.kdg.mazeGame.model.MazeGame;
 import be.kdg.mazeGame.model.Player;
 import be.kdg.mazeGame.view.gameScreen.MazeGamePresenter;
 import be.kdg.mazeGame.view.gameScreen.MazeGameView;
+import be.kdg.mazeGame.view.gameScreen.SoundManager;
 import be.kdg.mazeGame.view.settingsScreen.SettingsPresenter;
 import be.kdg.mazeGame.view.settingsScreen.SettingsView;
 import javafx.scene.Scene;
@@ -20,8 +21,8 @@ import javafx.stage.Stage;
  */
 
 public class StartPresenter {
-    private StartView view;
-    private Stage mainStage;
+    private final StartView view;
+    private final Stage mainStage;
 
     public StartPresenter(StartView view, Stage mainStage) {
         this.view = view;
@@ -49,6 +50,7 @@ public class StartPresenter {
 
                 MazeGamePresenter mazeGamePresenter = new MazeGamePresenter(gameView, mainStage, model, playerColor);
                 mazeGamePresenter.startTimer();
+                SoundManager.playTune("backgroundTrack.mp3");
 
                 view.getScene().setRoot(gameView);
                 mainStage.sizeToScene();

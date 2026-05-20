@@ -49,7 +49,7 @@ public class MazeGameView extends BorderPane {
         rightBox = new VBox(timingLabel);
 
         menuBar = new MenuBar();
-        menu = new Menu("Maze Game");
+        menu = new Menu("Menu");
         newGame = new MenuItem("New game");
         highScores = new MenuItem("High Scores");
         settings = new MenuItem("Settings");

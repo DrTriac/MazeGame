@@ -8,6 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
+import java.util.Objects;
+
 /**
  * Author: Astrid & Thomas
  * Description: class for the graphical representation of the screen to show the credits
@@ -30,7 +32,7 @@ public class CreditsView extends BorderPane {
         backButton = new Button("Back");
         title = new Label("Dr_Triac \n ToveFac");
         shadow = new DropShadow();
-        background = new Image(getClass().getResource("/be/kdg/mazeGame/mazebg2.jpg").toExternalForm());
+        background = new Image(Objects.requireNonNull(getClass().getResource("/be/kdg/mazeGame/mazebg2.jpg")).toExternalForm());
         vBox = new VBox(20, title, backButton);
     }
 

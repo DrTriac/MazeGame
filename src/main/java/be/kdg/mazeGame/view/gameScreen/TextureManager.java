@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Author: Astrid & Thomas
@@ -13,11 +14,11 @@ import java.util.Map;
 public class TextureManager {
     private static final Map<String, Image> textures = new HashMap<>();
 
-    static Image getImage(String imagename) {
-        return textures.get(imagename);
+    static Image getImage(String imageName) {
+        return textures.get(imageName);
     }
 
     static void loadImage(String name, String path) {
-        textures.put(name, new Image(TextureManager.class.getResource(path).toExternalForm()));
+        textures.put(name, new Image(Objects.requireNonNull(TextureManager.class.getResource(path)).toExternalForm()));
     }
 }

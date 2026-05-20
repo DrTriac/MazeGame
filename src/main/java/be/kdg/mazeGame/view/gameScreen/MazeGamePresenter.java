@@ -31,10 +31,10 @@ import java.io.IOException;
  */
 
 public class MazeGamePresenter {
-    private MazeGameView view;
-    private Stage mainStage;
-    private MazeGame model;
-    private Color playerColor;
+    private final MazeGameView view;
+    private final Stage mainStage;
+    private final MazeGame model;
+    private final Color playerColor;
     private Timeline timer;
     private final static int MAX_LEVEL = 3;
 
@@ -68,6 +68,7 @@ public class MazeGamePresenter {
 
         view.getNewGame().setOnAction(event -> {
             timer.stop();
+            SoundManager.stopMusic();
             goToStartScreen();
         });
 
@@ -146,6 +147,7 @@ public class MazeGamePresenter {
     private void checkWinCondition() {
         if (model.finished()) {
             timer.stop();
+            SoundManager.stopMusic();
             model.getPlayer().setScore(model.getTimeLeft() * 1000);
 
             if (model.getNumberOfPlays() < MAX_LEVEL) {

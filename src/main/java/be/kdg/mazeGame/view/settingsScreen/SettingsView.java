@@ -8,6 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
+import java.util.Objects;
+
 /**
  * Author: Astrid & Thomas
  * Description: class for the graphical representation of the screen to change the settings
@@ -33,7 +35,7 @@ public class SettingsView extends BorderPane {
         backButton = new Button("Back");
         title = new Label("Settings");
         shadow = new DropShadow();
-        background = new Image(getClass().getResource("/be/kdg/mazeGame/mazebg2.jpg").toExternalForm());
+        background = new Image(Objects.requireNonNull(getClass().getResource("/be/kdg/mazeGame/mazebg2.jpg")).toExternalForm());
         vBox = new VBox(20, title, soundButton, creditsButton, backButton);
     }
 

@@ -11,6 +11,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 
+import java.util.Objects;
+
 /**
  * Author: Astrid & Thomas
  * Description: class for the graphical representation of the start screen
@@ -37,7 +39,7 @@ public class StartView extends BorderPane {
         settingsButton = new Button("Settings");
         title = new Label("Maze Game");
         shadow = new DropShadow();
-        background = new Image(getClass().getResource("/be/kdg/mazeGame/mazebg2.jpg").toExternalForm());
+        background = new Image(Objects.requireNonNull(getClass().getResource("/be/kdg/mazeGame/mazebg2.jpg")).toExternalForm());
         instructions = new Label("Instructions:\n- Use the arrow keys to move around the maze.\n- Find the golden star before the timer runs out.");
         nameField = new TextField();
         nameField.setPromptText("Enter your name");

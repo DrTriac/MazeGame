@@ -1,21 +1,21 @@
-package be.kdg.mazeGame.model;
+package be.kdg.mazeGame.view.gameScreen;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-import java.io.IOException;
+import java.util.Objects;
 
 
 /**
- * Author: Astrid
- * Date: 18/05/2026
- * Description: null.java class for the maze game.
+ * Author: Astrid & Thomas
+ * Description: class to manage the sound of the game
  */
-public class SoundManager {
 
+public class SoundManager {
     private static MediaPlayer player;
+
     private static void playSong(String filename)
     {
-        String path = SoundManager.class.getResource(System.getProperty("user.dir") + "Sounds").toExternalForm();
+        String path = Objects.requireNonNull(SoundManager.class.getResource("/be/kdg/mazeGame/Sounds/" + filename)).toExternalForm();
         Media m = new Media(path);
         player = new MediaPlayer(m);
         player.setCycleCount(MediaPlayer.INDEFINITE);

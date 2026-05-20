@@ -4,8 +4,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
+
+import java.util.Objects;
 
 /**
  * Author: Astrid & Thomas
@@ -19,6 +21,7 @@ public class WinView extends BorderPane {
     private Button nextLevelButton;
     private Button menuButton;
     private Button exitButton;
+    private Image background;
 
     public WinView(int score, int timeLeft) {
         initialiseNodes(timeLeft, score);
@@ -27,12 +30,12 @@ public class WinView extends BorderPane {
 
     private void initialiseNodes(int timeleft, int score) {
         titleLabel = new Label("You Win!");
-        titleLabel.setStyle("-fx-font-size: 40px; -fx-font-weight: bold;");
+        titleLabel.setStyle("-fx-font-size: 40px; -fx-font-weight: bold; -fx-text-fill: #DDE6FF;");
 
         int minutes = timeleft / 60;
         int seconds = timeleft % 60;
         scoreLabel = new Label(String.format("You escaped the maze with %02d:%02d left! Your score is: %d.", minutes, seconds, score));
-        scoreLabel.setStyle("-fx-font-size: 20px;");
+        scoreLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #DDE6FF;");
 
         nextLevelButton = new Button("Next Level");
         nextLevelButton.setPrefWidth(200);
@@ -42,6 +45,8 @@ public class WinView extends BorderPane {
 
         exitButton = new Button("Exit Game");
         exitButton.setPrefWidth(200);
+
+        background = new Image(Objects.requireNonNull(getClass().getResource("/be/kdg/mazeGame/mazebg2.jpg")).toExternalForm());
     }
 
     private void layoutNodes() {
@@ -50,17 +55,20 @@ public class WinView extends BorderPane {
 
         this.setCenter(centerBox);
         this.setPadding(new Insets(40));
+
+        BackgroundImage bgImage = new BackgroundImage(background, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true));
+        this.setBackground(new Background(bgImage));
     }
 
-    public Button getNextLevelButton() {
+    Button getNextLevelButton() {
         return nextLevelButton;
     }
 
-    public Button getMenuButton() {
+    Button getMenuButton() {
         return menuButton;
     }
 
-    public Button getExitButton() {
+    Button getExitButton() {
         return exitButton;
     }
 }

@@ -8,8 +8,8 @@ import javafx.stage.Stage;
  */
 
 public class CreditsPresenter {
-    private CreditsView view;
-    private Stage stage;
+    private final CreditsView view;
+    private final Stage stage;
 
     public CreditsPresenter(CreditsView view, Stage stage) {
         this.view = view;

@@ -12,9 +12,9 @@ import javafx.stage.Stage;
  */
 
 public class SettingsPresenter {
-    private SettingsView view;
-    private Stage stage;
-    private Stage mainStage;
+    private final SettingsView view;
+    private final Stage stage;
+    private final Stage mainStage;
     private boolean soundOn = true;
 
     public SettingsPresenter(SettingsView view, Stage stage, Stage mainStage) {

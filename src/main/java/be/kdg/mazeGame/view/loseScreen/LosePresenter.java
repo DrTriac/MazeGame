@@ -3,6 +3,7 @@ package be.kdg.mazeGame.view.loseScreen;
 import be.kdg.mazeGame.model.MazeGame;
 import be.kdg.mazeGame.view.gameScreen.MazeGamePresenter;
 import be.kdg.mazeGame.view.gameScreen.MazeGameView;
+import be.kdg.mazeGame.view.gameScreen.SoundManager;
 import be.kdg.mazeGame.view.startScreen.StartPresenter;
 import be.kdg.mazeGame.view.startScreen.StartView;
 import javafx.scene.control.Alert;
@@ -18,12 +19,12 @@ import java.io.IOException;
  */
 
 public class LosePresenter {
-    private MazeGame model;
-    private Color playerColor;
-    private LoseView view;
-    private Stage loseStage;
-    private Stage mainStage;
-    private int score;
+    private final MazeGame model;
+    private final Color playerColor;
+    private final LoseView view;
+    private final Stage loseStage;
+    private final Stage mainStage;
+    private final int score;
 
     public LosePresenter(MazeGame model, Color playerColor, LoseView view, Stage loseStage, Stage mainStage) {
         this.model = model;
@@ -63,6 +64,7 @@ public class LosePresenter {
         MazeGame newModel = new MazeGame(model.getPlayer().getPlayerName(), model.getNumberOfPlays());
         MazeGamePresenter mazeGamePresenter = new MazeGamePresenter(mazeGameView, mainStage, newModel, playerColor);
         mazeGamePresenter.startTimer();
+        SoundManager.playTune("backgroundTrack.mp3");
         newModel.getPlayer().setScore(score);
 
         mainStage.getScene().setRoot(mazeGameView);
